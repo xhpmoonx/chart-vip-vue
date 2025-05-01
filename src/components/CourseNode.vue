@@ -6,7 +6,7 @@
     @mouseleave="$emit('leave')"
     @click="$emit('select', course)"
   >
-    <div class="shape" :id="course.id">
+    <div class="shape" :id="course.id" :class="shapeClass">
       <span class="units">{{ course.units }}</span>
     </div>
     <div class="label" v-html="formattedLabel" />
@@ -20,6 +20,14 @@ const props = defineProps({
   course: Object,
   mode: String,
   highlightedId: String
+});
+
+const shapeClass = computed(() => {
+  const freq = props.course.frequency;
+  if (freq === 'Offered year-round') return 'circle';
+  if (freq === 'Offered twice a year') return 'triangle';
+  if (freq === 'Offered once a year') return 'square';
+  return 'circle';
 });
 
 const formattedLabel = computed(() =>
@@ -48,40 +56,71 @@ const stateClass = computed(() =>
   line-height: 1.2;
 }
 
+/* base shape */
 .shape {
-  width: 48px;
-  height: 48px;
-  border-radius: 9999px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 0.5rem auto;
-  border: 3px solid #d1d5db;
-  background-color: #f3f4f6;
-}
-
-.units {
+  margin: 0 auto 0.3rem auto;
+  border: 2px solid #d1d5db;
+  color: white;
   font-weight: bold;
-  font-size: 0.875rem;
+  font-size: 0.7rem;
+  transition: all 0.2s ease;
 }
 
+/* SHAPES — frequency based */
+.circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.square {
+  width: 36px;
+  height: 36px;
+  border-radius: 0;
+}
+
+.triangle {
+  width: 38px;
+  height: 38px;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  border: 4px solid #d1d5db;
+}
+
+/* COLORS — type based */
 .core .shape {
   background-color: #3b82f6;
-  color: white;
-}
-.ge .shape {
-  background-color: #10b981;
-  color: white;
-}
-.elective .shape {
-  background-color: #f59e0b;
-  color: white;
-}
-.capstone .shape {
-  background-color: #8b5cf6;
-  color: white;
 }
 
+.ge .shape {
+  background-color: #10b981;
+}
+
+.elective .shape {
+  background-color: #f59e0b;
+}
+
+.capstone .shape {
+  background-color: #8b5cf6;
+}
+
+/* Units text */
+.units {
+  font-size: 0.7rem;
+  font-weight: normal;
+}
+
+/* Label under shape */
+.label {
+  font-size: 0.7rem;
+  line-height: 1.1;
+  white-space: pre-line;
+  margin-top: 0.2rem;
+}
+
+/* Metric highlights */
 .high-blocking .shape {
   border-color: #dc2626;
 }
@@ -92,8 +131,9 @@ const stateClass = computed(() =>
   border-color: #6366f1;
 }
 
+/* Selected / hovered */
 .active .shape {
-  outline: 3px solid #2563eb;
-  outline-offset: 2px;
+  outline: 2px solid #2563eb;
+  outline-offset: 1px;
 }
 </style>

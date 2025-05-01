@@ -25,18 +25,21 @@
 
           <!-- ✅ Popup appears below node -->
           <div v-if="selectedCourse?.id === course.id" class="popup-below">
-            <h4>{{ course.label }}</h4>
-            <p><strong>Units:</strong> {{ course.units }}</p>
-            <p><strong>Type:</strong> {{ course.type }}</p>
-            <div v-if="course.metrics">
-              <p><strong>Metrics:</strong></p>
-              <ul>
-                <li>Blocking: {{ course.metrics.blocking }}</li>
-                <li>Delay: {{ course.metrics.delay }}</li>
-                <li>Complexity: {{ course.metrics.complexity }}</li>
-              </ul>
-            </div>
-          </div>
+  <h4>{{ course.label }}</h4>
+  <p><strong>Units:</strong> {{ course.units }}</p>
+  <p><strong>Type:</strong> {{ course.type }}</p>
+  <p><strong>Frequency:</strong> {{ course.frequency }}</p>
+
+  <div v-if="course.metrics">
+    <p><strong>Metrics:</strong></p>
+    <ul>
+      <li>Blocking: {{ course.metrics.blocking }}</li>
+      <li>Delay: {{ course.metrics.delay }}</li>
+      <li>Complexity: {{ course.metrics.complexity }}</li>
+    </ul>
+  </div>
+</div>
+
         </div>
       </div>
     </div>

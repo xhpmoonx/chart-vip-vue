@@ -1,5 +1,6 @@
 <template>
   <div class="legend">
+    <!-- Dropdown -->
     <div class="dropdown-group">
       <label for="metric" class="label">View by:</label>
       <select
@@ -14,15 +15,22 @@
       </select>
     </div>
 
-    <h4 class="title">Legend</h4>
-
+    <!-- Type Legend -->
+    <h4 class="title">Color = Type</h4>
     <div class="item"><span class="shape core" /> Core</div>
     <div class="item"><span class="shape ge" /> GE</div>
     <div class="item"><span class="shape elective" /> Elective</div>
     <div class="item"><span class="shape capstone" /> Capstone</div>
 
+    <!-- Shape Legend -->
+    <h4 class="title">Shape = Frequency</h4>
+    <div class="item"><span class="shape circle" /> Offered year-round</div>
+    <div class="item"><span class="shape triangle" /> Offered twice a year</div>
+    <div class="item"><span class="shape square" /> Offered once a year</div>
+
     <div class="divider" />
 
+    <!-- Metric highlights -->
     <div class="item"><span class="shape border high-blocking" /> Blocking</div>
     <div class="item"><span class="shape border high-delay" /> Delay</div>
     <div class="item"><span class="shape border high-complexity" /> Complexity</div>
@@ -64,7 +72,7 @@ select {
 .title {
   font-size: 0.75rem;
   font-weight: bold;
-  margin-bottom: 0.3rem;
+  margin: 0.4rem 0 0.2rem;
 }
 
 .item {
@@ -78,17 +86,33 @@ select {
 .shape {
   width: 12px;
   height: 12px;
-  border-radius: 9999px;
   display: inline-block;
   background-color: #e5e7eb;
   border: 1.5px solid transparent;
 }
 
-/* Types */
+/* Colors by type */
 .core { background-color: #3b82f6; }
 .ge { background-color: #10b981; }
 .elective { background-color: #f59e0b; }
 .capstone { background-color: #8b5cf6; }
+
+/* Shapes by frequency */
+.circle {
+  border-radius: 50%;
+}
+
+.square {
+  border-radius: 0;
+}
+
+.triangle {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  background-color: #e5e7eb;
+  width: 12px;
+  height: 12px;
+  transform: translateY(1px);
+}
 
 /* Metrics */
 .border {
@@ -104,6 +128,6 @@ select {
 
 .divider {
   border-top: 1px solid #ddd;
-  margin: 0.4rem 0;
+  margin: 0.5rem 0;
 }
 </style>

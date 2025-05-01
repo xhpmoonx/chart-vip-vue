@@ -12,8 +12,7 @@
       "delay": 1,
       "blocking": 3,
       "centrality": 0.24
-    },
-    "frequency": "Offered year-round"
+    }
   },
   {
     "id": "engr101",
@@ -28,8 +27,7 @@
       "delay": 5,
       "blocking": 5,
       "centrality": 0.86
-    },
-    "frequency": "Offered year-round"
+    }
   },
   {
     "id": "ge1",
@@ -44,8 +42,7 @@
       "delay": 6,
       "blocking": 7,
       "centrality": 0.95
-    },
-    "frequency": "Offered twice a year"
+    }
   },
   {
     "id": "ge-math",
@@ -60,8 +57,7 @@
       "delay": 1,
       "blocking": 0,
       "centrality": 0.48
-    },
-    "frequency": "Offered twice a year"
+    }
   },
   {
     "id": "ge-hist",
@@ -76,8 +72,7 @@
       "delay": 0,
       "blocking": 6,
       "centrality": 0.36
-    },
-    "frequency": "Offered twice a year"
+    }
   },
   {
     "id": "phys101",
@@ -94,8 +89,7 @@
       "delay": 1,
       "blocking": 2,
       "centrality": 0.84
-    },
-    "frequency": "Offered year-round"
+    }
   },
   {
     "id": "cs101",
@@ -112,8 +106,7 @@
       "delay": 3,
       "blocking": 0,
       "centrality": 0.07
-    },
-    "frequency": "Offered year-round"
+    }
   },
   {
     "id": "ge2",
@@ -128,8 +121,7 @@
       "delay": 6,
       "blocking": 2,
       "centrality": 0.03
-    },
-    "frequency": "Offered twice a year"
+    }
   },
   {
     "id": "bio101",
@@ -144,8 +136,7 @@
       "delay": 2,
       "blocking": 4,
       "centrality": 0.76
-    },
-    "frequency": "Offered once a year"
+    }
   },
   {
     "id": "engr102",
@@ -162,8 +153,7 @@
       "delay": 3,
       "blocking": 4,
       "centrality": 0.74
-    },
-    "frequency": "Offered year-round"
+    }
   },
   {
     "id": "ge3",
@@ -178,8 +168,7 @@
       "delay": 2,
       "blocking": 8,
       "centrality": 0.61
-    },
-    "frequency": "Offered twice a year"
+    }
   },
   {
     "id": "math102",
@@ -196,8 +185,7 @@
       "delay": 3,
       "blocking": 2,
       "centrality": 0.43
-    },
-    "frequency": "Offered year-round"
+    }
   },
   {
     "id": "stat201",
@@ -214,8 +202,7 @@
       "delay": 3,
       "blocking": 7,
       "centrality": 0.73
-    },
-    "frequency": "Offered year-round"
+    }
   },
   {
     "id": "ge4",
@@ -230,8 +217,7 @@
       "delay": 3,
       "blocking": 6,
       "centrality": 0.78
-    },
-    "frequency": "Offered twice a year"
+    }
   },
   {
     "id": "stat202",
@@ -248,8 +234,7 @@
       "delay": 5,
       "blocking": 6,
       "centrality": 0.04
-    },
-    "frequency": "Offered year-round"
+    }
   },
   {
     "id": "math201",
@@ -266,8 +251,7 @@
       "delay": 4,
       "blocking": 3,
       "centrality": 0.38
-    },
-    "frequency": "Offered year-round"
+    }
   },
   {
     "id": "cs201",
@@ -284,8 +268,7 @@
       "delay": 1,
       "blocking": 6,
       "centrality": 0.54
-    },
-    "frequency": "Offered year-round"
+    }
   },
   {
     "id": "cs220",
@@ -302,8 +285,7 @@
       "delay": 2,
       "blocking": 0,
       "centrality": 0.56
-    },
-    "frequency": "Offered once a year"
+    }
   },
   {
     "id": "cs202",
@@ -321,8 +303,7 @@
       "delay": 5,
       "blocking": 0,
       "centrality": 0.64
-    },
-    "frequency": "Offered year-round"
+    }
   },
   {
     "id": "ge5",
@@ -337,8 +318,7 @@
       "delay": 4,
       "blocking": 3,
       "centrality": 0.16
-    },
-    "frequency": "Offered twice a year"
+    }
   },
   {
     "id": "cs221",
@@ -356,8 +336,7 @@
       "delay": 2,
       "blocking": 4,
       "centrality": 0.15
-    },
-    "frequency": "Offered once a year"
+    }
   },
   {
     "id": "engr201",
@@ -374,8 +353,7 @@
       "delay": 1,
       "blocking": 7,
       "centrality": 0.45
-    },
-    "frequency": "Offered year-round"
+    }
   },
   {
     "id": "math202",
@@ -392,8 +370,7 @@
       "delay": 6,
       "blocking": 2,
       "centrality": 0.58
-    },
-    "frequency": "Offered year-round"
+    }
   },
   {
     "id": "math230",
@@ -410,8 +387,7 @@
       "delay": 1,
       "blocking": 8,
       "centrality": 0.45
-    },
-    "frequency": "Offered year-round"
+    }
   },
   {
     "id": "capstone",
@@ -430,8 +406,7 @@
       "delay": 3,
       "blocking": 2,
       "centrality": 0.78
-    },
-    "frequency": "Offered once a year"
+    }
   },
   {
     "id": "ge6",
@@ -446,8 +421,7 @@
       "delay": 0,
       "blocking": 1,
       "centrality": 0.14
-    },
-    "frequency": "Offered twice a year"
+    }
   },
   {
     "id": "ethics300",
@@ -462,7 +436,6 @@
       "delay": 0,
       "blocking": 6,
       "centrality": 0.93
-    },
-    "frequency": "Offered twice a year"
+    }
   }
 ]
