@@ -1,94 +1,109 @@
 <template>
-  <div class="sidebar-key">
+  <div class="legend">
+    <div class="dropdown-group">
+      <label for="metric" class="label">View by:</label>
+      <select
+        id="metric"
+        :value="mode"
+        @change="e => emit('update:mode', e.target.value)"
+      >
+        <option value="none">None</option>
+        <option value="blocking">Blocking</option>
+        <option value="delay">Delay</option>
+        <option value="complexity">Complexity</option>
+      </select>
+    </div>
+
     <h4 class="title">Legend</h4>
 
-    <!-- 📊 Metric Highlights -->
-    <div class="section">
-      <div class="item"><span class="box blocking" /> Blocking ≥ 6</div>
-      <div class="item"><span class="box delay" /> Delay ≥ 4</div>
-      <div class="item"><span class="box complexity" /> Complexity ≥ 8</div>
-    </div>
+    <div class="item"><span class="shape core" /> Core</div>
+    <div class="item"><span class="shape ge" /> GE</div>
+    <div class="item"><span class="shape elective" /> Elective</div>
+    <div class="item"><span class="shape capstone" /> Capstone</div>
 
-    <!-- 📘 Course Types -->
-    <h4 class="title">Course Types</h4>
-    <div class="section">
-      <div class="item"><span class="circle core" /> Core Course</div>
-      <div class="item"><span class="circle ge" /> General Education (GE)</div>
-      <div class="item"><span class="circle elective" /> Elective Course</div>
-      <div class="item"><span class="circle capstone" /> Capstone Project</div>
-    </div>
+    <div class="divider" />
+
+    <div class="item"><span class="shape border high-blocking" /> Blocking</div>
+    <div class="item"><span class="shape border high-delay" /> Delay</div>
+    <div class="item"><span class="shape border high-complexity" /> Complexity</div>
+    <div class="item"><span class="shape border active" /> Active</div>
   </div>
 </template>
 
 <script setup>
-// Static component — no logic needed
+const props = defineProps({
+  mode: String
+});
+const emit = defineEmits(['update:mode']);
 </script>
 
 <style scoped>
-.sidebar-key {
-  font-size: 0.875rem;
+.legend {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
-  border-left: 1px solid #e5e7eb;
-  background-color: #f9fafb;
-  height: 100%;
+  gap: 0.3rem;
+}
+
+.dropdown-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.75rem;
+  gap: 0.25rem;
+}
+.label {
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+select {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
 }
 
 .title {
+  font-size: 0.75rem;
   font-weight: bold;
-  margin-bottom: 0.25rem;
-}
-
-.section {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 
 .item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  line-height: 1.2;
 }
 
-/* Metric style boxes */
-.box {
-  width: 20px;
-  height: 20px;
-  background-color: #f3f4f6;
+.shape {
+  width: 12px;
+  height: 12px;
   border-radius: 9999px;
-  border: 3px solid transparent;
+  display: inline-block;
+  background-color: #e5e7eb;
+  border: 1.5px solid transparent;
 }
 
-.blocking {
-  border-color: #dc2626; /* Red */
+/* Types */
+.core { background-color: #3b82f6; }
+.ge { background-color: #10b981; }
+.elective { background-color: #f59e0b; }
+.capstone { background-color: #8b5cf6; }
+
+/* Metrics */
+.border {
+  background-color: white;
 }
-.delay {
-  border-color: #f59e0b; /* Orange */
-}
-.complexity {
-  border-color: #6366f1; /* Indigo */
+.high-blocking { border-color: #10b981; }
+.high-delay { border-color: #3b82f6; }
+.high-complexity { border-color: #8b5cf6; }
+.active {
+  outline: 1.5px solid #2563eb;
+  outline-offset: 1px;
 }
 
-/* Course type dots */
-.circle {
-  width: 20px;
-  height: 20px;
-  border-radius: 9999px;
-}
-
-.core {
-  background-color: #3b82f6; /* Blue */
-}
-.ge {
-  background-color: #10b981; /* Green */
-}
-.elective {
-  background-color: #f59e0b; /* Orange */
-}
-.capstone {
-  background-color: #8b5cf6; /* Violet */
+.divider {
+  border-top: 1px solid #ddd;
+  margin: 0.4rem 0;
 }
 </style>
