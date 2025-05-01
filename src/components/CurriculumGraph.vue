@@ -18,7 +18,14 @@
       zIndex: 1
     }"
   >
-    <CourseNode :course="course" />
+  <CourseNode
+  :course="course"
+  :mode="mode"
+  :highlighted-id="highlightedId"
+  @hover="onHover"
+  @leave="clearHighlights"
+  @select="selectCourse"
+/>
   </div>
 </div>
 

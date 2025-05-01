@@ -1,33 +1,43 @@
 <template>
   <div
     class="course"
-    :class="[props.metricClass, props.stateClass, props.course.type]"
-    @mouseenter="emit('hover', props.course.id)"
-    @mouseleave="emit('leave')"
-    @click="emit('select', props.course)"
+    :class="[metricClass, stateClass, course.type]"
+    @mouseenter="$emit('hover', course.id)"
+    @mouseleave="$emit('leave')"
+    @click="$emit('select', course)"
   >
-    <div class="shape" :id="props.course.id">
-      <span class="units">{{ props.course.units }}</span>
+    <div class="shape" :id="course.id">
+      <span class="units">{{ course.units }}</span>
     </div>
     <div class="label" v-html="formattedLabel" />
   </div>
 </template>
-
 
 <script setup>
 import { computed } from 'vue';
 
 const props = defineProps({
   course: Object,
-  metricClass: String,
-  stateClass: String
+  mode: String,
+  highlightedId: String
 });
 
-const emit = defineEmits(['hover', 'leave', 'select']);
+const formattedLabel = computed(() =>
+  props.course.label.replace(/\\n/g, '<br>')
+);
 
-const formattedLabel = computed(() => {
-  return props.course.label.replace(/\n/g, '<br>');
+const metricClass = computed(() => {
+  if (!props.course.metrics || props.mode === 'none') return '';
+  const { blocking, delay, complexity } = props.course.metrics;
+  if (props.mode === 'blocking' && blocking >= 6) return 'high-blocking';
+  if (props.mode === 'delay' && delay >= 4) return 'high-delay';
+  if (props.mode === 'complexity' && complexity >= 8) return 'high-complexity';
+  return '';
 });
+
+const stateClass = computed(() =>
+  props.highlightedId === props.course.id ? 'active' : ''
+);
 </script>
 
 <style scoped>
@@ -55,35 +65,23 @@ const formattedLabel = computed(() => {
   font-size: 0.875rem;
 }
 
-.core {
-  color: white;
-}
 .core .shape {
   background-color: #3b82f6;
-}
-
-.ge {
   color: white;
 }
 .ge .shape {
   background-color: #10b981;
-}
-
-.elective {
   color: white;
 }
 .elective .shape {
   background-color: #f59e0b;
-}
-
-.capstone {
   color: white;
 }
 .capstone .shape {
   background-color: #8b5cf6;
+  color: white;
 }
 
-/* 🎯 Metric highlight borders */
 .high-blocking .shape {
   border-color: #dc2626;
 }
