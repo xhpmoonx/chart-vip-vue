@@ -6,7 +6,7 @@
       </div>
 
       <div class="grid" id="curriculum">
-  <ArrowLines :arrows="arrowPositions" /> <!-- فلش‌ها اول -->
+  <ArrowLines :arrows="arrowPositions" /> 
   <div
     v-for="course in curriculum"
     :key="course.id"
@@ -109,8 +109,8 @@ function selectCourse(course) {
 
 #curriculum {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 180px); /* one column per term */
-  grid-auto-rows: minmax(6rem, auto);              /* row height */
+  grid-template-columns: repeat(auto-fill, 180px); 
+  grid-auto-rows: minmax(6rem, auto);             
   gap: 1rem;
   position: relative;
   padding: 2rem;
