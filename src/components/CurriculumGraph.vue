@@ -111,9 +111,9 @@ function selectCourse(course) {
   display: grid;
   grid-template-columns: repeat(auto-fill, 180px);
   grid-auto-rows: minmax(6rem, auto);
-  gap: 1rem;
+  gap: 0.5rem;
   position: relative;
-  padding: 2rem;
+  padding: 2rem 2rem 2rem 0;
   overflow: visible;
 }
 
@@ -123,9 +123,9 @@ function selectCourse(course) {
 }
 
 .sidebar-fixed {
-  width: 120px;
-  min-width: 120px;
-  max-width: 120px;
+  width: 100;
+  min-width: 100;
+  max-width: 100;
   padding: 0.5rem;
   background-color: #f9fafb;
   border-left: 1px solid #e5e7eb;
