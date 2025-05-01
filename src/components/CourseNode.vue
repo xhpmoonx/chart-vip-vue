@@ -1,7 +1,7 @@
 <template>
   <div
     class="course"
-    :class="[metricClass, stateClass, course.type]"
+    :class="[metricClass, visibilityClass, course.type]"
     @mouseenter="$emit('hover', course.id)"
     @mouseleave="$emit('leave')"
     @click="$emit('select', course)"
@@ -19,7 +19,8 @@ import { computed } from 'vue';
 const props = defineProps({
   course: Object,
   mode: String,
-  highlightedId: String
+  highlightedId: String,
+  relatedIds: Array
 });
 
 const shapeClass = computed(() => {
@@ -43,9 +44,10 @@ const metricClass = computed(() => {
   return '';
 });
 
-const stateClass = computed(() =>
-  props.highlightedId === props.course.id ? 'active' : ''
-);
+const visibilityClass = computed(() => {
+  if (!props.highlightedId) return '';
+  return props.relatedIds?.includes(props.course.id) ? 'active' : 'dimmed';
+});
 </script>
 
 <style scoped>
@@ -56,7 +58,6 @@ const stateClass = computed(() =>
   line-height: 1.2;
 }
 
-/* base shape */
 .shape {
   display: flex;
   align-items: center;
@@ -69,7 +70,6 @@ const stateClass = computed(() =>
   transition: all 0.2s ease;
 }
 
-/* SHAPES — frequency based */
 .circle {
   width: 36px;
   height: 36px;
@@ -89,7 +89,6 @@ const stateClass = computed(() =>
   border: 4px solid #d1d5db;
 }
 
-/* COLORS — type based */
 .core .shape {
   background-color: #3b82f6;
 }
@@ -106,13 +105,11 @@ const stateClass = computed(() =>
   background-color: #8b5cf6;
 }
 
-/* Units text */
 .units {
   font-size: 0.7rem;
   font-weight: normal;
 }
 
-/* Label under shape */
 .label {
   font-size: 0.7rem;
   line-height: 1.1;
@@ -120,7 +117,6 @@ const stateClass = computed(() =>
   margin-top: 0.2rem;
 }
 
-/* Metric highlights */
 .high-blocking .shape {
   border-color: #dc2626;
 }
@@ -131,9 +127,14 @@ const stateClass = computed(() =>
   border-color: #6366f1;
 }
 
-/* Selected / hovered */
 .active .shape {
   outline: 2px solid #2563eb;
   outline-offset: 1px;
+}
+
+.dimmed {
+  opacity: 0.2;
+  pointer-events: none;
+  filter: grayscale(80%);
 }
 </style>

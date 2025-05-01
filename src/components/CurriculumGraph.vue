@@ -17,29 +17,28 @@
         >
           <CourseNode
             :course="course"
-            :mode="mode"
-            :highlighted-id="highlightedId"
+            :highlighted-id="hoveredCourseId"
+            :related-ids="getRelatedIds(hoveredCourseId)"
             @hover="onHover"
-            @leave="clearHighlights"
+            @leave="clearHover"
           />
 
           <!-- ✅ Popup appears below node -->
           <div v-if="selectedCourse?.id === course.id" class="popup-below">
-  <h4>{{ course.label }}</h4>
-  <p><strong>Units:</strong> {{ course.units }}</p>
-  <p><strong>Type:</strong> {{ course.type }}</p>
-  <p><strong>Frequency:</strong> {{ course.frequency }}</p>
+            <h4>{{ course.label }}</h4>
+            <p><strong>Units:</strong> {{ course.units }}</p>
+            <p><strong>Type:</strong> {{ course.type }}</p>
+            <p><strong>Frequency:</strong> {{ course.frequency }}</p>
 
-  <div v-if="course.metrics">
-    <p><strong>Metrics:</strong></p>
-    <ul>
-      <li>Blocking: {{ course.metrics.blocking }}</li>
-      <li>Delay: {{ course.metrics.delay }}</li>
-      <li>Complexity: {{ course.metrics.complexity }}</li>
-    </ul>
-  </div>
-</div>
-
+            <div v-if="course.metrics">
+              <p><strong>Metrics:</strong></p>
+              <ul>
+                <li>Blocking: {{ course.metrics.blocking }}</li>
+                <li>Delay: {{ course.metrics.delay }}</li>
+                <li>Complexity: {{ course.metrics.complexity }}</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -64,6 +63,15 @@ const arrowPositions = ref([]);
 const highlightedId = ref(null);
 const selectedCourse = ref(null);
 const mode = ref('none');
+const hoveredCourseId = ref(null);
+
+function onHover(id) {
+  hoveredCourseId.value = id;
+}
+
+function clearHover() {
+  hoveredCourseId.value = null;
+}
 
 function computeArrows() {
   arrowPositions.value = curriculum.value.flatMap(course =>
@@ -74,24 +82,33 @@ function computeArrows() {
   );
 }
 
-onMounted(() => {
-  curriculum.value = curriculumData;
-});
-
-watch(curriculum, computeArrows, { deep: true, immediate: true });
-
-function onHover(id) {
-  highlightedId.value = id;
-}
-
-function clearHighlights() {
-  highlightedId.value = null;
+function getRelatedIds(startId) {
+  if (!startId) return [];
+  const visited = new Set();
+  const stack = [startId];
+  while (stack.length) {
+    const id = stack.pop();
+    if (!visited.has(id)) {
+      visited.add(id);
+      const course = curriculum.value.find(c => c.id === id);
+      if (course && course.prereqs) {
+        stack.push(...course.prereqs);
+      }
+    }
+  }
+  return Array.from(visited);
 }
 
 function selectCourse(course) {
   selectedCourse.value =
     selectedCourse.value?.id === course.id ? null : course;
 }
+
+onMounted(() => {
+  curriculum.value = curriculumData;
+});
+
+watch(curriculum, computeArrows, { deep: true, immediate: true });
 </script>
 
 <style scoped>
@@ -139,7 +156,7 @@ function selectCourse(course) {
 /* ✅ Popup below the course node */
 .popup-below {
   position: absolute;
-  top: 60px; /* below the 48px circle + spacing */
+  top: 60px;
   left: 50%;
   transform: translateX(-50%);
   width: 200px;
