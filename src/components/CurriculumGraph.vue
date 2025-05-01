@@ -2,7 +2,7 @@
   <div class="layout">
     <div class="graph-wrapper" @click="selectedCourse = null">
       <div class="grid" id="curriculum">
-        <ArrowLines :arrows="arrowPositions" />
+        <ArrowLines :arrows="arrowPositions" :highlighted-ids="getRelatedIds(hoveredCourseId)" />
 
         <div
           v-for="course in curriculum"
@@ -19,6 +19,7 @@
             :course="course"
             :highlighted-id="hoveredCourseId"
             :related-ids="getRelatedIds(hoveredCourseId)"
+            :dimmed="hoveredCourseId && !getRelatedIds(hoveredCourseId).includes(course.id)"
             @hover="onHover"
             @leave="clearHover"
           />
@@ -82,21 +83,17 @@ function computeArrows() {
   );
 }
 
-function getRelatedIds(startId) {
-  if (!startId) return [];
-  const visited = new Set();
-  const stack = [startId];
-  while (stack.length) {
-    const id = stack.pop();
-    if (!visited.has(id)) {
-      visited.add(id);
-      const course = curriculum.value.find(c => c.id === id);
-      if (course && course.prereqs) {
-        stack.push(...course.prereqs);
-      }
-    }
-  }
-  return Array.from(visited);
+function getRelatedIds(id) {
+  if (!id) return [];
+
+  const course = curriculum.value.find(c => c.id === id);
+  const prereqs = course?.prereqs || [];
+
+  const dependents = curriculum.value
+    .filter(c => (c.prereqs || []).includes(id))
+    .map(c => c.id);
+
+  return [id, ...prereqs, ...dependents];
 }
 
 function selectCourse(course) {

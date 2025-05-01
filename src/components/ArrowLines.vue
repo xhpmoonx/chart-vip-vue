@@ -3,14 +3,14 @@
     <defs>
       <marker
         id="arrowhead"
-        markerWidth="8"
-        markerHeight="8"
-        refX="4"
-        refY="4"
+        markerWidth="10"
+        markerHeight="10"
+        refX="7"
+        refY="5"
         orient="auto"
         markerUnits="strokeWidth"
       >
-        <path d="M0,0 L8,4 L0,8 Z" fill="#f87171" />
+        <path d="M0,0 L10,5 L0,10" fill="#d1d5db" stroke="none" />
       </marker>
     </defs>
 
@@ -18,7 +18,7 @@
       v-for="(arrow, index) in positions"
       :key="index"
       :d="getPath(arrow)"
-      stroke="#f87171"
+      :stroke="getStroke(arrow)"
       stroke-width="2"
       fill="none"
       marker-end="url(#arrowhead)"
@@ -31,54 +31,76 @@ import { ref, watch, onMounted, nextTick } from 'vue';
 
 const props = defineProps({
   arrows: Array,
+  highlightedIds: Array
 });
 
 const positions = ref([]);
 
 function calculatePositions() {
   const result = [];
+
   const container = document.querySelector('.graph-wrapper');
-  const curriculum = document.getElementById('curriculum');
-
-  if (!container || !curriculum) return;
-
-  const containerBox = container.getBoundingClientRect();
-  const scale = parseFloat(getComputedStyle(curriculum).getPropertyValue('--scale')) || 1;
+  if (!container) return;
 
   props.arrows.forEach(({ from, to }) => {
     const fromEl = document.getElementById(from);
     const toEl = document.getElementById(to);
     if (!fromEl || !toEl) return;
 
-    const fromBox = fromEl.getBoundingClientRect();
-    const toBox = toEl.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+    const fromRect = fromEl.getBoundingClientRect();
+    const toRect = toEl.getBoundingClientRect();
 
-    const x1 = (fromBox.left - containerBox.left + fromBox.width / 2) / scale;
-    const y1 = (fromBox.top - containerBox.top + fromBox.height / 2) / scale;
-    const x2 = (toBox.left - containerBox.left + toBox.width / 2) / scale;
-    const y2 = (toBox.top - containerBox.top + toBox.height / 2) / scale;
+    const x1 = fromRect.left + fromRect.width / 2 - containerRect.left;
+    const y1 = fromRect.top + fromRect.height / 2 - containerRect.top;
 
-    result.push({ x1, y1, x2, y2 });
+    const x2 = toRect.left + toRect.width / 2 - containerRect.left;
+    const y2 = toRect.top + toRect.height / 2 - containerRect.top;
+
+    result.push({ x1, y1, x2, y2, from, to });
   });
 
   positions.value = result;
 }
 
+
 function getPath({ x1, y1, x2, y2 }) {
-  const dx = Math.min(150, Math.abs(x2 - x1) * 0.6); 
-  const dy = (y2 - y1) * 0.3;
+  const isVertical = Math.abs(x2 - x1) < 20;
+  const dx = Math.max(80, Math.abs(x2 - x1) * 0.6);
+  const dy = Math.max(80, Math.abs(y2 - y1) * 0.6);
 
-  const curveX1 = x1 + dx;
-  const curveY1 = y1;
-  const curveX2 = x2 - dx;
-  const curveY2 = y2;
+  if (isVertical) {
+    return `M${x1},${y1} C${x1},${y1 + dy} ${x2},${y2 - dy} ${x2},${y2}`;
+  }
 
-  return `M${x1},${y1} C${curveX1},${curveY1} ${curveX2},${curveY2} ${x2},${y2}`;
+  return `M${x1},${y1} C${x1 + dx},${y1} ${x2 - dx},${y2} ${x2},${y2}`;
 }
 
 
+function isHighlighted(arrow) {
+  if (!props.highlightedIds || props.highlightedIds.length === 0) {
+    return 'default';
+  }
+  if (
+    props.highlightedIds.includes(arrow.from) &&
+    props.highlightedIds.includes(arrow.to)
+  ) {
+    return 'highlighted';
+  }
+  return 'dimmed';
+}
+
+function getStroke(arrow) {
+  const status = isHighlighted(arrow);
+  if (status === 'highlighted') return '#2563eb'; // blue
+  if (status === 'dimmed') return '#d1d5db';      // gray
+  return '#dc2626';                               // red default
+}
+
 function delayedCalc() {
-  nextTick(() => setTimeout(calculatePositions, 30));
+  nextTick(() => {
+    requestAnimationFrame(() => calculatePositions());
+  });
 }
 
 onMounted(() => {
@@ -87,6 +109,7 @@ onMounted(() => {
 });
 
 watch(() => props.arrows, delayedCalc, { deep: true });
+watch(() => props.highlightedIds, delayedCalc, { deep: true });
 </script>
 
 <style scoped>
@@ -96,8 +119,11 @@ watch(() => props.arrows, delayedCalc, { deep: true });
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
   z-index: 0;
   overflow: visible;
+}
+
+.arrow-canvas path {
+  pointer-events: stroke;
 }
 </style>
