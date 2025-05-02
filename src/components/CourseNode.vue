@@ -10,7 +10,7 @@
       class="shape"
       :id="course.id"
       :class="[shapeClass,colorLevel > 0 ? `color-level-${colorLevel}` : '',{ dimmed }]">
-      
+
       <span class="units">
         {{ mode === 'none' ? course.units : course.metrics?.[mode] ?? '_' }}
 
@@ -101,13 +101,14 @@ const stateClass = computed(() =>
 .elective .shape { background-color: #f59e0b; }
 .capstone .shape { background-color: #8b5cf6; }
 
-.high-blocking .shape { border-color: #dc2626; }
-.high-delay .shape { border-color: #f59e0b; }
-.high-complexity .shape { border-color: #6366f1; }
+.high-blocking .shape { border-color: #dc2626;   color: black;}
+.high-delay .shape { border-color: #f59e0b;   color: black;}
+.high-complexity .shape { border-color: #6366f1;   color: black;}
 
 .active .shape {
   outline: 2px solid #2563eb;
   outline-offset: 1px;
+  color: black;
 }
 
 /* Prereqs (red shades) */
@@ -119,9 +120,6 @@ const stateClass = computed(() =>
 .color-level-11.shape { background-color: #1e40af !important; } /* direct dependent */
 .color-level-12.shape { background-color: #3b82f6 !important; }
 .color-level-13.shape { background-color: #93c5fd !important; }
-
-
-
 
 .dimmed {
   filter: grayscale(90%) brightness(0.8);
