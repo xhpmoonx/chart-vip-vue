@@ -1,12 +1,16 @@
 <template>
   <div
     class="course"
-    :class="[metricClass, visibilityClass, course.type]"
+    :class="[metricClass, stateClass, course.type]"
     @mouseenter="$emit('hover', course.id)"
     @mouseleave="$emit('leave')"
     @click="$emit('select', course)"
   >
-    <div class="shape" :id="course.id" :class="shapeClass">
+    <div
+      class="shape"
+      :id="course.id"
+      :class="[shapeClass, { [`color-level-${colorLevel}`]: colorLevel > 0, dimmed }]"
+      >
       <span class="units">{{ course.units }}</span>
     </div>
     <div class="label" v-html="formattedLabel" />
@@ -20,8 +24,13 @@ const props = defineProps({
   course: Object,
   mode: String,
   highlightedId: String,
-  relatedIds: Array
+  colorLevel: Number,
+  dimmed: Boolean, // 👈 new prop
 });
+
+const formattedLabel = computed(() =>
+  props.course.label.replace(/\\n/g, '<br>')
+);
 
 const shapeClass = computed(() => {
   const freq = props.course.frequency;
@@ -30,10 +39,6 @@ const shapeClass = computed(() => {
   if (freq === 'Offered once a year') return 'square';
   return 'circle';
 });
-
-const formattedLabel = computed(() =>
-  props.course.label.replace(/\\n/g, '<br>')
-);
 
 const metricClass = computed(() => {
   if (!props.course.metrics || props.mode === 'none') return '';
@@ -44,10 +49,9 @@ const metricClass = computed(() => {
   return '';
 });
 
-const visibilityClass = computed(() => {
-  if (!props.highlightedId) return '';
-  return props.relatedIds?.includes(props.course.id) ? 'active' : 'dimmed';
-});
+const stateClass = computed(() =>
+  props.highlightedId === props.course.id ? 'active' : ''
+);
 </script>
 
 <style scoped>
@@ -67,7 +71,7 @@ const visibilityClass = computed(() => {
   color: white;
   font-weight: bold;
   font-size: 0.7rem;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, filter 0.2s ease;
 }
 
 .circle {
@@ -89,20 +93,30 @@ const visibilityClass = computed(() => {
   border: 4px solid #d1d5db;
 }
 
-.core .shape {
-  background-color: #3b82f6;
+.core .shape { background-color: #3b82f6; }
+.ge .shape { background-color: #10b981; }
+.elective .shape { background-color: #f59e0b; }
+.capstone .shape { background-color: #8b5cf6; }
+
+.high-blocking .shape { border-color: #dc2626; }
+.high-delay .shape { border-color: #f59e0b; }
+.high-complexity .shape { border-color: #6366f1; }
+
+.active .shape {
+  outline: 2px solid #2563eb;
+  outline-offset: 1px;
 }
 
-.ge .shape {
-  background-color: #10b981;
-}
+.color-level-1.shape { background-color: #dc2626 !important; } /* red */
+.color-level-2.shape { background-color: #fca5a5 !important; } /* pink */
+.color-level-3.shape { background-color: #1e40af !important; } /* dark blue */
+.color-level-4.shape { background-color: #60a5fa !important; } /* light blue */
 
-.elective .shape {
-  background-color: #f59e0b;
-}
 
-.capstone .shape {
-  background-color: #8b5cf6;
+
+.dimmed {
+  filter: grayscale(90%) brightness(0.8);
+  opacity: 0.4;
 }
 
 .units {
@@ -115,26 +129,5 @@ const visibilityClass = computed(() => {
   line-height: 1.1;
   white-space: pre-line;
   margin-top: 0.2rem;
-}
-
-.high-blocking .shape {
-  border-color: #dc2626;
-}
-.high-delay .shape {
-  border-color: #f59e0b;
-}
-.high-complexity .shape {
-  border-color: #6366f1;
-}
-
-.active .shape {
-  outline: 2px solid #2563eb;
-  outline-offset: 1px;
-}
-
-.dimmed {
-  opacity: 0.2;
-  pointer-events: none;
-  filter: grayscale(80%);
 }
 </style>

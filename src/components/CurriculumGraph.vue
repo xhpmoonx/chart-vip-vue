@@ -2,7 +2,11 @@
   <div class="layout">
     <div class="graph-wrapper" @click="selectedCourse = null">
       <div class="grid" id="curriculum">
-        <ArrowLines :arrows="arrowPositions" :highlighted-ids="getRelatedIds(hoveredCourseId)" />
+        <ArrowLines
+  :arrows="arrowPositions"
+  :highlighted-ids="[hoveredCourseId, ...Object.keys(hoverColors)]"
+/>
+
 
         <div
           v-for="course in curriculum"
@@ -15,16 +19,17 @@
           }"
           @click.stop="selectCourse(course)"
         >
-          <CourseNode
-            :course="course"
-            :highlighted-id="hoveredCourseId"
-            :related-ids="getRelatedIds(hoveredCourseId)"
-            :dimmed="hoveredCourseId && !getRelatedIds(hoveredCourseId).includes(course.id)"
-            @hover="onHover"
-            @leave="clearHover"
-          />
+        <CourseNode
+  :course="course"
+  :highlighted-id="hoveredCourseId"
+  :color-level="hoverColors[course.id] || 0"
+  :dimmed="hoveredCourseId && course.id !== hoveredCourseId && !hoverColors[course.id]"
+  @hover="onHover"
+  @leave="clearHover"
+/>
 
-          <!-- ✅ Popup appears below node -->
+
+
           <div v-if="selectedCourse?.id === course.id" class="popup-below">
             <h4>{{ course.label }}</h4>
             <p><strong>Units:</strong> {{ course.units }}</p>
@@ -61,18 +66,10 @@ import curriculumData from '../assets/curriculum.json';
 
 const curriculum = ref([]);
 const arrowPositions = ref([]);
-const highlightedId = ref(null);
 const selectedCourse = ref(null);
-const mode = ref('none');
 const hoveredCourseId = ref(null);
-
-function onHover(id) {
-  hoveredCourseId.value = id;
-}
-
-function clearHover() {
-  hoveredCourseId.value = null;
-}
+const hoverColors = ref({});
+const mode = ref('none');
 
 function computeArrows() {
   arrowPositions.value = curriculum.value.flatMap(course =>
@@ -83,17 +80,60 @@ function computeArrows() {
   );
 }
 
-function getRelatedIds(id) {
-  if (!id) return [];
+function computeHoverColors(id) {
+  const levels = {};
+  if (!id) return levels;
 
+  const visited = new Set();
+
+  // Level 1: Direct prerequisites
   const course = curriculum.value.find(c => c.id === id);
-  const prereqs = course?.prereqs || [];
+  if (course?.prereqs) {
+    for (const pre of course.prereqs) {
+      if (pre !== id) levels[pre] = 1;
+      visited.add(pre);
+    }
+  }
 
-  const dependents = curriculum.value
-    .filter(c => (c.prereqs || []).includes(id))
-    .map(c => c.id);
+  // Level 2: Indirect prerequisites
+  for (const pre of course?.prereqs || []) {
+    const preCourse = curriculum.value.find(c => c.id === pre);
+    for (const pre2 of preCourse?.prereqs || []) {
+      if (!visited.has(pre2)) levels[pre2] = 2;
+    }
+  }
 
-  return [id, ...prereqs, ...dependents];
+  // Level 3: Direct dependents
+  for (const c of curriculum.value) {
+    if ((c.prereqs || []).includes(id)) {
+      levels[c.id] = 3;
+      visited.add(c.id);
+    }
+  }
+
+  // Level 4: Indirect dependents
+  for (const [nodeId, lvl] of Object.entries(levels)) {
+    if (lvl === 3) {
+      const subDependents = curriculum.value.filter(x =>
+        (x.prereqs || []).includes(nodeId)
+      );
+      for (const sd of subDependents) {
+        if (!visited.has(sd.id)) levels[sd.id] = 4;
+      }
+    }
+  }
+
+  return levels;
+}
+
+function onHover(id) {
+  hoveredCourseId.value = id;
+  hoverColors.value = computeHoverColors(id);
+}
+
+function clearHover() {
+  hoveredCourseId.value = null;
+  hoverColors.value = {};
 }
 
 function selectCourse(course) {
@@ -150,7 +190,6 @@ watch(curriculum, computeArrows, { deep: true, immediate: true });
   font-size: 0.75rem;
 }
 
-/* ✅ Popup below the course node */
 .popup-below {
   position: absolute;
   top: 60px;
@@ -160,7 +199,7 @@ watch(curriculum, computeArrows, { deep: true, immediate: true });
   background: white;
   border: 1px solid #ccc;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   padding: 0.6rem;
   font-size: 0.75rem;
   z-index: 10;
