@@ -21,12 +21,14 @@
         >
         <CourseNode
   :course="course"
+  :mode="mode"
   :highlighted-id="hoveredCourseId"
   :color-level="hoverColors[course.id] || 0"
   :dimmed="hoveredCourseId && course.id !== hoveredCourseId && !hoverColors[course.id]"
   @hover="onHover"
   @leave="clearHover"
 />
+
 
 
 
