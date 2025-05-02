@@ -9,14 +9,12 @@
     <div
       class="shape"
       :id="course.id"
-      :class="[
-  shapeClass,
-  colorLevel > 0 ? `color-level-${colorLevel}` : '',
-  { dimmed }
-]"
+      :class="[shapeClass,colorLevel > 0 ? `color-level-${colorLevel}` : '',{ dimmed }]">
+      
+      <span class="units">
+        {{ mode === 'none' ? course.units : course.metrics?.[mode] ?? '_' }}
 
-      >
-      <span class="units">{{ course.units }}</span>
+      </span>
     </div>
     <div class="label" v-html="formattedLabel" />
   </div>
