@@ -14,6 +14,12 @@
         <option value="complexity">Complexity</option>
       </select>
     </div>
+    <!-- Metric highlights -->
+    <div class="item"><span class="shape border high-blocking" /> Blocking</div>
+    <div class="item"><span class="shape border high-delay" /> Delay</div>
+    <div class="item"><span class="shape border high-complexity" /> Complexity</div>
+    <div class="item"><span class="shape border active" /> Active</div>
+    <div class="divider" />
 
     <!-- Type Legend -->
     <h4 class="title">Color = Type</h4>
@@ -21,21 +27,26 @@
     <div class="item"><span class="shape ge" /> GE</div>
     <div class="item"><span class="shape elective" /> Elective</div>
     <div class="item"><span class="shape capstone" /> Capstone</div>
+    <div class="divider" />
 
     <!-- Shape Legend -->
     <h4 class="title">Shape = Frequency</h4>
     <div class="item"><span class="shape circle" /> Offered year-round</div>
     <div class="item"><span class="shape triangle" /> Offered twice a year</div>
     <div class="item"><span class="shape square" /> Offered once a year</div>
-
     <div class="divider" />
 
-    <!-- Metric highlights -->
-    <div class="item"><span class="shape border high-blocking" /> Blocking</div>
-    <div class="item"><span class="shape border high-delay" /> Delay</div>
-    <div class="item"><span class="shape border high-complexity" /> Complexity</div>
-    <div class="item"><span class="shape border active" /> Active</div>
-  </div>
+    <!-- Hover Effects -->
+    <h4 class="title">Hover Highlighting</h4>
+    <ul class="hover-legend">
+      <li><span class="swatch color-level-1"></span> Direct Prerequisite</li>
+      <li><span class="swatch color-level-2"></span> Indirect Prerequisite</li>
+      <li><span class="swatch color-level-11"></span> Direct Dependent</li>
+      <li><span class="swatch color-level-12"></span> Indirect Dependent</li>
+    </ul>
+      </div>
+
+
 </template>
 
 <script setup>
@@ -129,5 +140,37 @@ select {
 .divider {
   border-top: 1px solid #ddd;
   margin: 0.5rem 0;
+
 }
+
+.legend-section {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+}
+
+.hover-legend {
+  list-style: none;
+  padding: 0;
+  margin: 0.3rem 0;
+}
+
+.hover-legend li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.3rem;
+}
+
+.swatch {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+.color-level-1 { background-color: #dc2626; }   /* red */
+.color-level-2 { background-color: #f87171; }   /* lighter red */
+.color-level-11 { background-color: #1e40af; }  /* dark blue */
+.color-level-12 { background-color: #3b82f6; }  /* light blue */
+
 </style>

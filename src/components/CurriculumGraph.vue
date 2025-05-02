@@ -6,8 +6,6 @@
   :arrows="arrowPositions"
   :highlighted-ids="[hoveredCourseId, ...Object.keys(hoverColors)]"
 />
-
-
         <div
           v-for="course in curriculum"
           :key="course.id"
@@ -20,24 +18,19 @@
           @click.stop="selectCourse(course)"
         >
         <CourseNode
-  :course="course"
-  :mode="mode"
-  :highlighted-id="hoveredCourseId"
-  :color-level="hoverColors[course.id] || 0"
-  :dimmed="hoveredCourseId && course.id !== hoveredCourseId && !hoverColors[course.id]"
-  @hover="onHover"
-  @leave="clearHover"
-/>
-
-
-
-
+          :course="course"
+          :mode="mode"
+          :highlighted-id="hoveredCourseId"
+          :color-level="hoverColors[course.id] || 0"
+          :dimmed="hoveredCourseId && course.id !== hoveredCourseId && !hoverColors[course.id]"
+          @hover="onHover"
+          @leave="clearHover"
+        />
           <div v-if="selectedCourse?.id === course.id" class="popup-below">
             <h4>{{ course.label }}</h4>
             <p><strong>Units:</strong> {{ course.units }}</p>
             <p><strong>Type:</strong> {{ course.type }}</p>
             <p><strong>Frequency:</strong> {{ course.frequency }}</p>
-
             <div v-if="course.metrics">
               <p><strong>Metrics:</strong></p>
               <ul>
@@ -50,7 +43,6 @@
         </div>
       </div>
     </div>
-
     <SidebarKey
       class="sidebar-fixed"
       :mode="mode"
