@@ -80,51 +80,42 @@ function computeArrows() {
   );
 }
 
-function computeHoverColors(id) {
+function computeHoverColors(startId) {
   const levels = {};
-  if (!id) return levels;
+  const visitedUp = new Set();
+  const visitedDown = new Set();
 
-  const visited = new Set();
+  function traverseUp(id, depth = 1) {
+    if (!id || visitedUp.has(id)) return;
+    visitedUp.add(id);
 
-  // Level 1: Direct prerequisites
-  const course = curriculum.value.find(c => c.id === id);
-  if (course?.prereqs) {
-    for (const pre of course.prereqs) {
-      if (pre !== id) levels[pre] = 1;
-      visited.add(pre);
+    if (id !== startId) {
+      // Max 3 shades: 1 = red, 2 = light red, 3 = lighter red
+      levels[id] = Math.min(depth, 3);
+    }
+
+    const course = curriculum.value.find(c => c.id === id);
+    (course?.prereqs || []).forEach(pr => traverseUp(pr, depth + 1));
+  }
+
+  function traverseDown(id, depth = 1) {
+    if (!id || visitedDown.has(id)) return;
+    visitedDown.add(id);
+
+    const dependents = curriculum.value.filter(c => (c.prereqs || []).includes(id));
+    for (const dep of dependents) {
+      // 11 = dark blue, 12 = medium blue, 13 = light blue
+      levels[dep.id] = 10 + Math.min(depth, 3);
+      traverseDown(dep.id, depth + 1);
     }
   }
 
-  // Level 2: Indirect prerequisites
-  for (const pre of course?.prereqs || []) {
-    const preCourse = curriculum.value.find(c => c.id === pre);
-    for (const pre2 of preCourse?.prereqs || []) {
-      if (!visited.has(pre2)) levels[pre2] = 2;
-    }
-  }
-
-  // Level 3: Direct dependents
-  for (const c of curriculum.value) {
-    if ((c.prereqs || []).includes(id)) {
-      levels[c.id] = 3;
-      visited.add(c.id);
-    }
-  }
-
-  // Level 4: Indirect dependents
-  for (const [nodeId, lvl] of Object.entries(levels)) {
-    if (lvl === 3) {
-      const subDependents = curriculum.value.filter(x =>
-        (x.prereqs || []).includes(nodeId)
-      );
-      for (const sd of subDependents) {
-        if (!visited.has(sd.id)) levels[sd.id] = 4;
-      }
-    }
-  }
+  traverseUp(startId);
+  traverseDown(startId);
 
   return levels;
 }
+
 
 function onHover(id) {
   hoveredCourseId.value = id;

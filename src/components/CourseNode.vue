@@ -9,7 +9,12 @@
     <div
       class="shape"
       :id="course.id"
-      :class="[shapeClass, { [`color-level-${colorLevel}`]: colorLevel > 0, dimmed }]"
+      :class="[
+  shapeClass,
+  colorLevel > 0 ? `color-level-${colorLevel}` : '',
+  { dimmed }
+]"
+
       >
       <span class="units">{{ course.units }}</span>
     </div>
@@ -107,10 +112,16 @@ const stateClass = computed(() =>
   outline-offset: 1px;
 }
 
-.color-level-1.shape { background-color: #dc2626 !important; } /* red */
-.color-level-2.shape { background-color: #fca5a5 !important; } /* pink */
-.color-level-3.shape { background-color: #1e40af !important; } /* dark blue */
-.color-level-4.shape { background-color: #60a5fa !important; } /* light blue */
+/* Prereqs (red shades) */
+.color-level-1.shape { background-color: #dc2626 !important; } /* direct prereq */
+.color-level-2.shape { background-color: #f87171 !important; }
+.color-level-3.shape { background-color: #fca5a5 !important; }
+
+/* Dependents (blue shades) */
+.color-level-11.shape { background-color: #1e40af !important; } /* direct dependent */
+.color-level-12.shape { background-color: #3b82f6 !important; }
+.color-level-13.shape { background-color: #93c5fd !important; }
+
 
 
 
