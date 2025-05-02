@@ -6,15 +6,32 @@
   :arrows="arrowPositions"
   :highlighted-ids="[hoveredCourseId, ...Object.keys(hoverColors)]"
 />
+        <!-- TERM HEADERS -->
+        <div
+          v-for="term in termNumbers"
+          :key="'header-' + term"
+          class="term-header"
+          :style="{ gridColumn: term, gridRow: 1 }"
+          >
+          Term {{ term }}
+        </div>
+
+        <!-- COMPLEXITY FOOTERS -->
+        <div
+          v-for="term in termNumbers"
+          :key="'footer-' + term"
+          class="term-footer"
+          :style="{ gridColumn: term, gridRow: maxRow + 1 }"
+          >
+          Avg. Complexity: {{ getAverageComplexity(term) }}
+        </div>
+
         <div
           v-for="course in curriculum"
           :key="course.id"
           class="course-node"
-          :style="{
-            gridColumn: course.term,
-            gridRow: course.row || 'auto',
-            position: 'relative'
-          }"
+          :style="{ gridColumn: course.term, gridRow: course.row || 'auto' }"
+
           @click.stop="selectCourse(course)"
         >
         <CourseNode
@@ -52,7 +69,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch, computed } from 'vue';
 import CourseNode from './CourseNode.vue';
 import ArrowLines from './ArrowLines.vue';
 import SidebarKey from './SidebarKey.vue';
@@ -65,6 +82,21 @@ const hoveredCourseId = ref(null);
 const hoverColors = ref({});
 const mode = ref('none');
 
+const termNumbers = computed(() => {
+  return [...new Set(curriculum.value.map(c => parseInt(c.term)))].sort((a, b) => a - b);
+});
+
+const maxRow = computed(() => {
+  const rows = curriculum.value.map(c => parseInt(c.row) || 1);
+  return Math.max(...rows);
+});
+
+function getAverageComplexity(term) {
+  const courses = curriculum.value.filter(c => c.term == term && c.metrics?.complexity);
+  if (!courses.length) return '-';
+  const total = courses.reduce((sum, c) => sum + c.metrics.complexity, 0);
+  return (total / courses.length).toFixed(1);
+}
 function computeArrows() {
   arrowPositions.value = curriculum.value.flatMap(course =>
     (course.prereqs || []).map(prereqId => ({
@@ -205,4 +237,16 @@ watch(curriculum, computeArrows, { deep: true, immediate: true });
   padding-left: 1rem;
   margin: 0.3rem 0 0 0;
 }
+.term-header {
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.term-footer {
+  font-size: 0.7rem;
+  color: #4b5563;
+  text-align: center;
+}
+
 </style>
