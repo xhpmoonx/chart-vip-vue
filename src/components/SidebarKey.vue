@@ -12,6 +12,7 @@
         <option value="blocking">Blocking</option>
         <option value="delay">Delay</option>
         <option value="complexity">Complexity</option>
+        <option value="dfw">DFW Rate</option>
         <option value="none">None</option>
       </select>
     </div>

@@ -56,6 +56,9 @@
                 <li>Delay: {{ course.metrics.delay }}</li>
                 <li>Complexity: {{ course.metrics.complexity }}</li>
               </ul>
+              <p v-if="course.metrics?.dfwRate !== undefined">
+              <strong>DFW Rate:</strong> {{ (course.metrics.dfwRate * 100).toFixed(1) }}%
+            </p>
             </div>
           </div>
         </div>
@@ -105,23 +108,30 @@ function getAverageComplexity(term) {
 }
 function computeArrows() {
   arrowPositions.value = curriculum.value.flatMap(course => {
-    const isHighDFW = course.metrics?.blocking >= 6;
-    return (course.prereqs || []).map(prereqId => ({
-      from: prereqId,
-      to: course.id,
-      dfwLike: isHighDFW
-    }));
+    return (course.prereqs || []).map(prereqId => {
+      const fromId = typeof prereqId === 'object' ? prereqId.id : prereqId;
+      const fromCourse = curriculum.value.find(c => c.id === fromId);
+      const dfwRate = fromCourse?.metrics?.dfwRate ?? 0;
+
+      return {
+        from: fromId,
+        to: course.id,
+        dfwRate: dfwRate
+      };
+    });
   });
 }
 
-
 const filteredArrows = computed(() => {
-  return arrowPositions.value.filter(a => {
-    if (lineMode.value === 'high') return a.dfwLike;
-    if (lineMode.value === 'normal') return !a.dfwLike;
-    return true;
-  });
+  if (lineMode.value === 'high') {
+    return arrowPositions.value.filter(a => a.dfwRate >= 0.3);
+  }
+  if (lineMode.value === 'normal') {
+    return arrowPositions.value.filter(a => a.dfwRate < 0.3);
+  }
+  return arrowPositions.value; // All lines
 });
+
 
 
 

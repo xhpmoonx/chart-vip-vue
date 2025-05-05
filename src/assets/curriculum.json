@@ -11,7 +11,8 @@
       "complexity": 9,
       "delay": 1,
       "blocking": 3,
-      "centrality": 0.24
+      "centrality": 0.24,
+      "dfwRate": 0.28
     },
     "frequency": "Offered year-round"
   },
@@ -27,7 +28,8 @@
       "complexity": 8,
       "delay": 5,
       "blocking": 5,
-      "centrality": 0.86
+      "centrality": 0.86,
+      "dfwRate": 0.26
     },
     "frequency": "Offered year-round"
   },
@@ -43,7 +45,8 @@
       "complexity": 8,
       "delay": 6,
       "blocking": 7,
-      "centrality": 0.95
+      "centrality": 0.95,
+      "dfwRate": 0.25
     },
     "frequency": "Offered twice a year"
   },
@@ -59,7 +62,8 @@
       "complexity": 4,
       "delay": 1,
       "blocking": 0,
-      "centrality": 0.48
+      "centrality": 0.48,
+      "dfwRate": 0.4
     },
     "frequency": "Offered twice a year"
   },
@@ -75,7 +79,8 @@
       "complexity": 9,
       "delay": 0,
       "blocking": 6,
-      "centrality": 0.36
+      "centrality": 0.36,
+      "dfwRate": 0.45
     },
     "frequency": "Offered twice a year"
   },
@@ -93,7 +98,8 @@
       "complexity": 2,
       "delay": 1,
       "blocking": 2,
-      "centrality": 0.84
+      "centrality": 0.84,
+      "dfwRate": 0.42
     },
     "frequency": "Offered year-round"
   },
@@ -111,7 +117,8 @@
       "complexity": 9,
       "delay": 3,
       "blocking": 0,
-      "centrality": 0.07
+      "centrality": 0.07,
+      "dfwRate": 0.39
     },
     "frequency": "Offered year-round"
   },
@@ -127,7 +134,8 @@
       "complexity": 1,
       "delay": 6,
       "blocking": 2,
-      "centrality": 0.03
+      "centrality": 0.03,
+      "dfwRate": 0.35
     },
     "frequency": "Offered twice a year"
   },
@@ -143,7 +151,8 @@
       "complexity": 4,
       "delay": 2,
       "blocking": 4,
-      "centrality": 0.76
+      "centrality": 0.76,
+      "dfwRate": 0.09
     },
     "frequency": "Offered once a year"
   },
@@ -161,7 +170,8 @@
       "complexity": 6,
       "delay": 3,
       "blocking": 4,
-      "centrality": 0.74
+      "centrality": 0.74,
+      "dfwRate": 0.42
     },
     "frequency": "Offered year-round"
   },
@@ -177,7 +187,8 @@
       "complexity": 2,
       "delay": 2,
       "blocking": 8,
-      "centrality": 0.61
+      "centrality": 0.61,
+      "dfwRate": 0.27
     },
     "frequency": "Offered twice a year"
   },
@@ -195,7 +206,8 @@
       "complexity": 10,
       "delay": 3,
       "blocking": 2,
-      "centrality": 0.43
+      "centrality": 0.43,
+      "dfwRate": 0.17
     },
     "frequency": "Offered year-round"
   },
@@ -213,7 +225,8 @@
       "complexity": 8,
       "delay": 3,
       "blocking": 7,
-      "centrality": 0.73
+      "centrality": 0.73,
+      "dfwRate": 0.38
     },
     "frequency": "Offered year-round"
   },
@@ -229,7 +242,8 @@
       "complexity": 3,
       "delay": 3,
       "blocking": 6,
-      "centrality": 0.78
+      "centrality": 0.78,
+      "dfwRate": 0.26
     },
     "frequency": "Offered twice a year"
   },
@@ -247,7 +261,8 @@
       "complexity": 8,
       "delay": 5,
       "blocking": 6,
-      "centrality": 0.04
+      "centrality": 0.04,
+      "dfwRate": 0.23
     },
     "frequency": "Offered year-round"
   },
@@ -265,7 +280,8 @@
       "complexity": 1,
       "delay": 4,
       "blocking": 3,
-      "centrality": 0.38
+      "centrality": 0.38,
+      "dfwRate": 0.13
     },
     "frequency": "Offered year-round"
   },
@@ -283,7 +299,8 @@
       "complexity": 6,
       "delay": 1,
       "blocking": 6,
-      "centrality": 0.54
+      "centrality": 0.54,
+      "dfwRate": 0.42
     },
     "frequency": "Offered year-round"
   },
@@ -301,7 +318,8 @@
       "complexity": 10,
       "delay": 2,
       "blocking": 0,
-      "centrality": 0.56
+      "centrality": 0.56,
+      "dfwRate": 0.28
     },
     "frequency": "Offered once a year"
   },
@@ -320,7 +338,8 @@
       "complexity": 7,
       "delay": 5,
       "blocking": 0,
-      "centrality": 0.64
+      "centrality": 0.64,
+      "dfwRate": 0.23
     },
     "frequency": "Offered year-round"
   },
@@ -336,7 +355,8 @@
       "complexity": 5,
       "delay": 4,
       "blocking": 3,
-      "centrality": 0.16
+      "centrality": 0.16,
+      "dfwRate": 0.31
     },
     "frequency": "Offered twice a year"
   },
@@ -355,7 +375,8 @@
       "complexity": 12,
       "delay": 2,
       "blocking": 4,
-      "centrality": 0.15
+      "centrality": 0.15,
+      "dfwRate": 0.2
     },
     "frequency": "Offered once a year"
   },
@@ -373,7 +394,8 @@
       "complexity": 7,
       "delay": 1,
       "blocking": 7,
-      "centrality": 0.45
+      "centrality": 0.45,
+      "dfwRate": 0.12
     },
     "frequency": "Offered year-round"
   },
@@ -391,7 +413,8 @@
       "complexity": 8,
       "delay": 6,
       "blocking": 2,
-      "centrality": 0.58
+      "centrality": 0.58,
+      "dfwRate": 0.4
     },
     "frequency": "Offered year-round"
   },
@@ -409,7 +432,8 @@
       "complexity": 7,
       "delay": 1,
       "blocking": 8,
-      "centrality": 0.45
+      "centrality": 0.45,
+      "dfwRate": 0.12
     },
     "frequency": "Offered year-round"
   },
@@ -429,7 +453,8 @@
       "complexity": 12,
       "delay": 3,
       "blocking": 2,
-      "centrality": 0.78
+      "centrality": 0.78,
+      "dfwRate": 0.42
     },
     "frequency": "Offered once a year"
   },
@@ -445,7 +470,8 @@
       "complexity": 8,
       "delay": 0,
       "blocking": 1,
-      "centrality": 0.14
+      "centrality": 0.14,
+      "dfwRate": 0.33
     },
     "frequency": "Offered twice a year"
   },
@@ -461,7 +487,8 @@
       "complexity": 12,
       "delay": 0,
       "blocking": 6,
-      "centrality": 0.93
+      "centrality": 0.93,
+      "dfwRate": 0.19
     },
     "frequency": "Offered twice a year"
   }

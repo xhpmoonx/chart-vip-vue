@@ -12,9 +12,16 @@
       :class="[shapeClass,colorLevel > 0 ? `color-level-${colorLevel}` : '',{ dimmed }]">
 
       <span class="units">
-        {{ mode === 'units' ? course.units : course.metrics?.[mode] ?? '' }}
+        <template v-if="mode === 'units'">
+          {{ course.units }}
+        </template>
+        <template v-else-if="mode === 'dfw' && course.metrics?.dfwRate !== undefined">
+          {{ (course.metrics.dfwRate * 100).toFixed(0) }}%
+        </template>
+        <template v-else>
+          {{ course.metrics?.[mode] ?? '' }}
+        </template>
       </span>
-
     </div>
     <div class="label" v-html="formattedLabel" />
   </div>
