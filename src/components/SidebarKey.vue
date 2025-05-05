@@ -45,16 +45,33 @@
       <li><span class="swatch color-level-11"></span> Direct Dependent</li>
       <li><span class="swatch color-level-12"></span> Indirect Dependent</li>
     </ul>
+    <div class="divider" />
+
+    <!-- LINE STYLE MODE -->
+    <div class="dropdown-group">
+      <label for="line-mode" class="label">Prerequisite Lines:</label>
+      <select
+        id="line-mode"
+        :value="lineMode"
+        @change="e => emit('update:lineMode', e.target.value)"
+      >
+        <option value="all">All</option>
+        <option value="high">Only High DFW</option>
+        <option value="normal">Only Normal</option>
+      </select>
+    </div>
+
+
       </div>
-
-
 </template>
 
 <script setup>
 const props = defineProps({
-  mode: String
+  mode: String,
+  lineMode: String
 });
-const emit = defineEmits(['update:mode']);
+
+const emit = defineEmits(['update:mode', 'update:lineMode']);
 </script>
 
 <style scoped>

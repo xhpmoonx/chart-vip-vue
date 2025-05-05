@@ -19,10 +19,12 @@
       :key="index"
       :d="getPath(arrow)"
       :stroke="getStroke(arrow)"
+      :stroke-dasharray="arrow.dfwLike ? '4,2' : 'none'"
       stroke-width="2"
       fill="none"
       marker-end="url(#arrowhead)"
     />
+
   </svg>
 </template>
 
@@ -31,8 +33,10 @@ import { ref, watch, onMounted, nextTick } from 'vue';
 
 const props = defineProps({
   arrows: Array,
-  highlightedIds: Array
+  highlightedIds: Array,
+  lineMode: String
 });
+
 
 const positions = ref([]);
 
@@ -42,7 +46,7 @@ function calculatePositions() {
   const container = document.querySelector('.graph-wrapper');
   if (!container) return;
 
-  props.arrows.forEach(({ from, to }) => {
+  props.arrows.forEach(({ from, to, dfwLike }) => {
     const fromEl = document.getElementById(from);
     const toEl = document.getElementById(to);
     if (!fromEl || !toEl) return;
@@ -57,7 +61,7 @@ function calculatePositions() {
     const x2 = toRect.left + toRect.width / 2 - containerRect.left;
     const y2 = toRect.top + toRect.height / 2 - containerRect.top;
 
-    result.push({ x1, y1, x2, y2, from, to });
+    result.push({ x1, y1, x2, y2, from, to, dfwLike });
   });
 
   positions.value = result;

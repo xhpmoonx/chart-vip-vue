@@ -3,9 +3,10 @@
     <div class="graph-wrapper" @click="selectedCourse = null">
       <div class="grid" id="curriculum">
         <ArrowLines
-  :arrows="arrowPositions"
-  :highlighted-ids="[hoveredCourseId, ...Object.keys(hoverColors)]"
-/>
+          :arrows="filteredArrows"
+          :highlighted-ids="[hoveredCourseId, ...Object.keys(hoverColors)]"
+          :line-mode="lineMode"
+        />
         <!-- TERM HEADERS -->
         <div
           v-for="term in termNumbers"
@@ -61,10 +62,13 @@
       </div>
     </div>
     <SidebarKey
-      class="sidebar-fixed"
-      :mode="mode"
-      @update:mode="mode = $event"
-    />
+  class="sidebar-fixed"
+  :mode="mode"
+  :line-mode="lineMode"
+  @update:mode="mode = $event"
+  @update:lineMode="lineMode = $event"
+/>
+
   </div>
 </template>
 
@@ -81,6 +85,8 @@ const selectedCourse = ref(null);
 const hoveredCourseId = ref(null);
 const hoverColors = ref({});
 const mode = ref('units');
+const lineMode = ref('all');
+
 
 const termNumbers = computed(() => {
   return [...new Set(curriculum.value.map(c => parseInt(c.term)))].sort((a, b) => a - b);
@@ -98,13 +104,26 @@ function getAverageComplexity(term) {
   return (total / courses.length).toFixed(1);
 }
 function computeArrows() {
-  arrowPositions.value = curriculum.value.flatMap(course =>
-    (course.prereqs || []).map(prereqId => ({
+  arrowPositions.value = curriculum.value.flatMap(course => {
+    const isHighDFW = course.metrics?.blocking >= 6;
+    return (course.prereqs || []).map(prereqId => ({
       from: prereqId,
-      to: course.id
-    }))
-  );
+      to: course.id,
+      dfwLike: isHighDFW
+    }));
+  });
 }
+
+
+const filteredArrows = computed(() => {
+  return arrowPositions.value.filter(a => {
+    if (lineMode.value === 'high') return a.dfwLike;
+    if (lineMode.value === 'normal') return !a.dfwLike;
+    return true;
+  });
+});
+
+
 
 function computeHoverColors(startId) {
   const levels = {};
