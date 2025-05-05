@@ -12,9 +12,9 @@
       :class="[shapeClass,colorLevel > 0 ? `color-level-${colorLevel}` : '',{ dimmed }]">
 
       <span class="units">
-        {{ mode === 'none' ? course.units : course.metrics?.[mode] ?? '_' }}
-
+        {{ mode === 'units' ? course.units : course.metrics?.[mode] ?? '' }}
       </span>
+
     </div>
     <div class="label" v-html="formattedLabel" />
   </div>
@@ -28,7 +28,7 @@ const props = defineProps({
   mode: String,
   highlightedId: String,
   colorLevel: Number,
-  dimmed: Boolean, // 👈 new prop
+  dimmed: Boolean, 
 });
 
 const formattedLabel = computed(() =>

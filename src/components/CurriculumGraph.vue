@@ -80,7 +80,7 @@ const arrowPositions = ref([]);
 const selectedCourse = ref(null);
 const hoveredCourseId = ref(null);
 const hoverColors = ref({});
-const mode = ref('none');
+const mode = ref('units');
 
 const termNumbers = computed(() => {
   return [...new Set(curriculum.value.map(c => parseInt(c.term)))].sort((a, b) => a - b);

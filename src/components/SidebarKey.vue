@@ -8,10 +8,11 @@
         :value="mode"
         @change="e => emit('update:mode', e.target.value)"
       >
-        <option value="none">None</option>
+        <option value="units">Units</option>
         <option value="blocking">Blocking</option>
         <option value="delay">Delay</option>
         <option value="complexity">Complexity</option>
+        <option value="none">None</option>
       </select>
     </div>
     <!-- Metric highlights -->
