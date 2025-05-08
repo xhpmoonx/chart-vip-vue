@@ -38,9 +38,18 @@ const props = defineProps({
   dimmed: Boolean, 
 });
 
-const formattedLabel = computed(() =>
-  props.course.label.replace(/\\n/g, '<br>')
-);
+
+const formattedLabel = computed(() => {
+  const course = props.course;
+  const baseLabel = course.label.replace(/\n/g, '<br>');
+  const waitingList = Number(course["waiting list"] || 0);
+  if (waitingList > 20) {
+    return baseLabel + '<span style="color:red;"> ⚠</span>';
+  }
+  return baseLabel;
+});
+
+
 
 const shapeClass = computed(() => {
   const freq = props.course.frequency;

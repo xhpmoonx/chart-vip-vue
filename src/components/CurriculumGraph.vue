@@ -45,7 +45,7 @@
           @leave="clearHover"
         />
           <div v-if="selectedCourse?.id === course.id" class="popup-below">
-            <h4>{{ course.label }}</h4>
+            <h4>{{ course.label }} <span v-if="course['waiting list'] > 20">⚠</span></h4>
             <p><strong>Units:</strong> {{ course.units }}</p>
             <p><strong>Type:</strong> {{ course.type }}</p>
             <p><strong>Frequency:</strong> {{ course.frequency }}</p>
