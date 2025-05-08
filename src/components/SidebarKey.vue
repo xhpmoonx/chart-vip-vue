@@ -38,6 +38,14 @@
     <div class="item"><span class="shape square" /> Offered once a year</div>
     <div class="divider" />
 
+    <!-- course Legend -->
+    <h4 class="title">⚠ / ⧖  </h4>
+    <div class="legend">
+    <div><span style="color:red;">⚠</span> = High Waiting List </div>
+    <div><span style="color:blue;">⧖</span> = Equity Gap </div>
+    <div class="divider" />
+    </div>
+
     <!-- Hover Effects -->
     <h4 class="title">Hover Highlighting</h4>
     <ul class="hover-legend">
