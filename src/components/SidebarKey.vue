@@ -1,4 +1,5 @@
 <template>
+    <div class="sidebar-scroll">
   <div class="legend">
     <!-- Dropdown -->
     <div class="dropdown-group">
@@ -82,6 +83,7 @@
     </div>
 
 
+  </div>
       </div>
 </template>
 
@@ -95,6 +97,11 @@ const emit = defineEmits(['update:mode', 'update:lineMode']);
 </script>
 
 <style scoped>
+.sidebar-scroll {
+  overflow-y: auto;
+  height: 100%;
+  padding: 1rem 1.5rem 1rem 1rem;
+}
 .legend {
   display: flex;
   flex-direction: column;
