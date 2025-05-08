@@ -38,15 +38,21 @@ const props = defineProps({
   dimmed: Boolean, 
 });
 
-
 const formattedLabel = computed(() => {
   const course = props.course;
-  const baseLabel = course.label.replace(/\n/g, '<br>');
+  let label = course.label.replace(/\n/g, '<br>');
+
   const waitingList = Number(course["waiting list"] || 0);
+  const equityGap = !!course["equity gap"];
+
   if (waitingList > 20) {
-    return baseLabel + '<span style="color:red;"> ⚠</span>';
+    label += '<span style="color:red;"> ⚠</span>';
   }
-  return baseLabel;
+  if (equityGap) {
+    label += '<span style="color:blue;"> ⧖</span>';
+  }
+
+  return label;
 });
 
 
