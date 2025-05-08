@@ -53,8 +53,9 @@
       <line x1="0" y1="5" x2="100" y2="5" stroke="green" stroke-width="3" stroke-dasharray="6,4" />
     </svg>
     <span>Longest path</span>
-    <div class="divider" />
   </div>
+  <div class="divider" />
+
 
     <!-- Hover Effects -->
     <h4 class="title">Hover Highlighting</h4>
