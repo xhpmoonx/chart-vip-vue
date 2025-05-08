@@ -84,8 +84,10 @@ import CourseNode from './CourseNode.vue';
 import ArrowLines from './ArrowLines.vue';
 import SidebarKey from './SidebarKey.vue';
 import curriculumData from '../assets/curriculum.json';
+import { findLongestPaths } from '../utils/graph.js';
 
 const curriculum = ref([]);
+const longestPath = ref([]);
 const arrowPositions = ref([]);
 const selectedCourse = ref(null);
 const hoveredCourseId = ref(null);
@@ -191,7 +193,10 @@ function selectCourse(course) {
 }
 
 onMounted(() => {
-  curriculum.value = curriculumData;
+  curriculum.value = curriculumData;          
+  longestPath.value = findLongestPaths(curriculum.value); 
+  console.log('Graph data loaded:', curriculum.value);
+  console.log('Longest path:', longestPath.value);
 });
 
 watch(curriculum, computeArrows, { deep: true, immediate: true });
