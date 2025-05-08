@@ -203,7 +203,11 @@ function selectCourse(course) {
 }
 
 onMounted(() => {
-  curriculum.value = curriculumData;          
+  curriculum.value = curriculumData;   
+
+    console.log('Longest path:', longestPath.value);
+    console.log('Highlighted arrows:', highlightedArrows.value);
+     
 });
 
 watch(curriculum, computeArrows, { deep: true, immediate: true });
