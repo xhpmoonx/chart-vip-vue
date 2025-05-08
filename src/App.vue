@@ -22,4 +22,10 @@ export default {
   font-family: sans-serif;
   background-color: #f9fafb;
 }
+html, body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
 </style>

@@ -212,44 +212,47 @@ watch(curriculum, computeArrows, { deep: true, immediate: true });
 <style scoped>
 .layout {
   display: flex;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   overflow: hidden;
 }
-
 .graph-wrapper {
   flex: 1;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
-  font-family: sans-serif;
   background-color: #fff;
 }
 
+
 #curriculum {
+  width: 90%;
   display: grid;
   grid-template-columns: repeat(auto-fill, 180px);
   grid-auto-rows: minmax(6rem, auto);
   gap: 0.5rem;
   position: relative;
   padding: 2rem 2rem 2rem 0;
-  overflow: visible;
 }
+
 
 .course-node {
   position: relative;
   overflow: visible;
 }
-
 .sidebar-fixed {
-  width: 100;
-  min-width: 100;
-  max-width: 100;
-  padding: 0.5rem;
+  width: 240px;
+  flex-shrink: 0;
+  height: 100vh;
+  overflow-y: auto;
   background-color: #f9fafb;
   border-left: 1px solid #e5e7eb;
-  overflow-y: auto;
+  padding: 1rem;
+  padding-right: 1.5rem; 
+  margin-right: 40px; 
   font-size: 0.75rem;
 }
+
 
 .popup-below {
   position: absolute;
