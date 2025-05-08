@@ -18,8 +18,8 @@
       v-for="(arrow, index) in positions"
       :key="index"
       :d="getPath(arrow)"
-      :stroke="getStroke(arrow)"
-      :stroke-dasharray="arrow.dfwLike ? '4,2' : 'none'"
+      :stroke="arrow.isLongest ? 'green' : getStroke(arrow)"
+      :stroke-dasharray="arrow.isLongest ? '6,4' : (arrow.dfwLike ? '4,2' : 'none')"
       stroke-width="2"
       fill="none"
       marker-end="url(#arrowhead)"
@@ -33,6 +33,7 @@ import { ref, watch, onMounted, nextTick } from 'vue';
 
 const props = defineProps({
   arrows: Array,
+  highlighted: Array,
   highlightedIds: Array,
   lineMode: String
 });
@@ -63,6 +64,24 @@ function calculatePositions() {
 
     result.push({ x1, y1, x2, y2, from, to, dfwLike });
   });
+  props.highlighted.forEach(({ from, to }) => {
+  const fromEl = document.getElementById(from);
+  const toEl = document.getElementById(to);
+  if (!fromEl || !toEl) return;
+
+  const containerRect = container.getBoundingClientRect();
+  const fromRect = fromEl.getBoundingClientRect();
+  const toRect = toEl.getBoundingClientRect();
+
+  const x1 = fromRect.left + fromRect.width / 2 - containerRect.left;
+  const y1 = fromRect.top + fromRect.height / 2 - containerRect.top;
+
+  const x2 = toRect.left + toRect.width / 2 - containerRect.left;
+  const y2 = toRect.top + toRect.height / 2 - containerRect.top;
+
+  result.push({ x1, y1, x2, y2, from, to, isLongest: true });
+});
+
 
   positions.value = result;
 }

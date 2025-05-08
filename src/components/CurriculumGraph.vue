@@ -4,6 +4,7 @@
       <div class="grid" id="curriculum">
         <ArrowLines
           :arrows="filteredArrows"
+          :highlighted="highlightedArrows"
           :highlighted-ids="[hoveredCourseId, ...Object.keys(hoverColors)]"
           :line-mode="lineMode"
         />
@@ -87,7 +88,6 @@ import curriculumData from '../assets/curriculum.json';
 import { findLongestPaths } from '../utils/graph.js';
 
 const curriculum = ref([]);
-const longestPath = ref([]);
 const arrowPositions = ref([]);
 const selectedCourse = ref(null);
 const hoveredCourseId = ref(null);
@@ -95,6 +95,16 @@ const hoverColors = ref({});
 const mode = ref('units');
 const lineMode = ref('all');
 
+const longestPath = computed(() => {
+  return findLongestPaths(curriculum.value);
+});
+const highlightedArrows = computed(() => {
+  return longestPath.value.slice(0, -1).map((fromId, i) => ({
+    from: fromId,
+    to: longestPath.value[i + 1],
+    longest: true
+  }));
+});
 
 const termNumbers = computed(() => {
   return [...new Set(curriculum.value.map(c => parseInt(c.term)))].sort((a, b) => a - b);
@@ -194,9 +204,6 @@ function selectCourse(course) {
 
 onMounted(() => {
   curriculum.value = curriculumData;          
-  longestPath.value = findLongestPaths(curriculum.value); 
-  console.log('Graph data loaded:', curriculum.value);
-  console.log('Longest path:', longestPath.value);
 });
 
 watch(curriculum, computeArrows, { deep: true, immediate: true });
