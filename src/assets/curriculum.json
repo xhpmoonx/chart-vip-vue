@@ -14,7 +14,9 @@
       "centrality": 0.24,
       "dfwRate": 0.28
     },
-    "frequency": "Offered year-round"
+    "frequency": "Offered year-round",
+    "waiting list": 0,
+    "equity gap": false
   },
   {
     "id": "engr101",
@@ -31,7 +33,9 @@
       "centrality": 0.86,
       "dfwRate": 0.26
     },
-    "frequency": "Offered year-round"
+    "frequency": "Offered year-round",
+    "waiting list": 0,
+    "equity gap": false
   },
   {
     "id": "ge1",
@@ -48,7 +52,9 @@
       "centrality": 0.95,
       "dfwRate": 0.25
     },
-    "frequency": "Offered twice a year"
+    "frequency": "Offered twice a year",
+    "waiting list": 0,
+    "equity gap": false
   },
   {
     "id": "ge-math",
@@ -65,7 +71,9 @@
       "centrality": 0.48,
       "dfwRate": 0.4
     },
-    "frequency": "Offered twice a year"
+    "frequency": "Offered twice a year",
+    "waiting list": 0,
+    "equity gap": false
   },
   {
     "id": "ge-hist",
@@ -82,7 +90,9 @@
       "centrality": 0.36,
       "dfwRate": 0.45
     },
-    "frequency": "Offered twice a year"
+    "frequency": "Offered twice a year",
+    "waiting list": 2,
+    "equity gap": false
   },
   {
     "id": "phys101",
@@ -101,7 +111,9 @@
       "centrality": 0.84,
       "dfwRate": 0.42
     },
-    "frequency": "Offered year-round"
+    "frequency": "Offered year-round",
+    "waiting list": 17,
+    "equity gap": true
   },
   {
     "id": "cs101",
@@ -120,7 +132,9 @@
       "centrality": 0.07,
       "dfwRate": 0.39
     },
-    "frequency": "Offered year-round"
+    "frequency": "Offered year-round",
+    "waiting list": 21,
+    "equity gap": false
   },
   {
     "id": "ge2",
@@ -137,7 +151,9 @@
       "centrality": 0.03,
       "dfwRate": 0.35
     },
-    "frequency": "Offered twice a year"
+    "frequency": "Offered twice a year",
+    "waiting list": 26,
+    "equity gap": false
   },
   {
     "id": "bio101",
@@ -154,7 +170,9 @@
       "centrality": 0.76,
       "dfwRate": 0.09
     },
-    "frequency": "Offered once a year"
+    "frequency": "Offered once a year",
+    "waiting list": 8,
+    "equity gap": false
   },
   {
     "id": "engr102",
@@ -173,7 +191,9 @@
       "centrality": 0.74,
       "dfwRate": 0.42
     },
-    "frequency": "Offered year-round"
+    "frequency": "Offered year-round",
+    "waiting list": 6,
+    "equity gap": false
   },
   {
     "id": "ge3",
@@ -190,7 +210,9 @@
       "centrality": 0.61,
       "dfwRate": 0.27
     },
-    "frequency": "Offered twice a year"
+    "frequency": "Offered twice a year",
+    "waiting list": 14,
+    "equity gap": false
   },
   {
     "id": "math102",
@@ -209,7 +231,9 @@
       "centrality": 0.43,
       "dfwRate": 0.17
     },
-    "frequency": "Offered year-round"
+    "frequency": "Offered year-round",
+    "waiting list": 22,
+    "equity gap": false
   },
   {
     "id": "stat201",
@@ -228,7 +252,9 @@
       "centrality": 0.73,
       "dfwRate": 0.38
     },
-    "frequency": "Offered year-round"
+    "frequency": "Offered year-round",
+    "waiting list": 18,
+    "equity gap": false
   },
   {
     "id": "ge4",
@@ -245,7 +271,9 @@
       "centrality": 0.78,
       "dfwRate": 0.26
     },
-    "frequency": "Offered twice a year"
+    "frequency": "Offered twice a year",
+    "waiting list": 13,
+    "equity gap": false
   },
   {
     "id": "stat202",
@@ -264,7 +292,9 @@
       "centrality": 0.04,
       "dfwRate": 0.23
     },
-    "frequency": "Offered year-round"
+    "frequency": "Offered year-round",
+    "waiting list": 9,
+    "equity gap": false
   },
   {
     "id": "math201",
@@ -283,7 +313,9 @@
       "centrality": 0.38,
       "dfwRate": 0.13
     },
-    "frequency": "Offered year-round"
+    "frequency": "Offered year-round",
+    "waiting list": 21,
+    "equity gap": false
   },
   {
     "id": "cs201",
@@ -302,7 +334,9 @@
       "centrality": 0.54,
       "dfwRate": 0.42
     },
-    "frequency": "Offered year-round"
+    "frequency": "Offered year-round",
+    "waiting list": 31,
+    "equity gap": false
   },
   {
     "id": "cs220",
@@ -321,7 +355,9 @@
       "centrality": 0.56,
       "dfwRate": 0.28
     },
-    "frequency": "Offered once a year"
+    "frequency": "Offered once a year",
+    "waiting list": 10,
+    "equity gap": false
   },
   {
     "id": "cs202",
@@ -341,7 +377,9 @@
       "centrality": 0.64,
       "dfwRate": 0.23
     },
-    "frequency": "Offered year-round"
+    "frequency": "Offered year-round",
+    "waiting list": 14,
+    "equity gap": false
   },
   {
     "id": "ge5",
@@ -358,7 +396,9 @@
       "centrality": 0.16,
       "dfwRate": 0.31
     },
-    "frequency": "Offered twice a year"
+    "frequency": "Offered twice a year",
+    "waiting list": 19,
+    "equity gap": false
   },
   {
     "id": "cs221",
@@ -378,7 +418,9 @@
       "centrality": 0.15,
       "dfwRate": 0.2
     },
-    "frequency": "Offered once a year"
+    "frequency": "Offered once a year",
+    "waiting list": 24,
+    "equity gap": false
   },
   {
     "id": "engr201",
@@ -397,7 +439,9 @@
       "centrality": 0.45,
       "dfwRate": 0.12
     },
-    "frequency": "Offered year-round"
+    "frequency": "Offered year-round",
+    "waiting list": 18,
+    "equity gap": false
   },
   {
     "id": "math202",
@@ -416,7 +460,9 @@
       "centrality": 0.58,
       "dfwRate": 0.4
     },
-    "frequency": "Offered year-round"
+    "frequency": "Offered year-round",
+    "waiting list": 12,
+    "equity gap": false
   },
   {
     "id": "math230",
@@ -435,7 +481,9 @@
       "centrality": 0.45,
       "dfwRate": 0.12
     },
-    "frequency": "Offered year-round"
+    "frequency": "Offered year-round",
+    "waiting list": 5,
+    "equity gap": false
   },
   {
     "id": "capstone",
@@ -456,7 +504,9 @@
       "centrality": 0.78,
       "dfwRate": 0.42
     },
-    "frequency": "Offered once a year"
+    "frequency": "Offered once a year",
+    "waiting list": 0,
+    "equity gap": false
   },
   {
     "id": "ge6",
@@ -473,7 +523,9 @@
       "centrality": 0.14,
       "dfwRate": 0.33
     },
-    "frequency": "Offered twice a year"
+    "frequency": "Offered twice a year",
+    "waiting list": 16,
+    "equity gap": false
   },
   {
     "id": "ethics300",
@@ -490,6 +542,8 @@
       "centrality": 0.93,
       "dfwRate": 0.19
     },
-    "frequency": "Offered twice a year"
+    "frequency": "Offered twice a year",
+    "waiting list": 0,
+    "equity gap": false
   }
 ]

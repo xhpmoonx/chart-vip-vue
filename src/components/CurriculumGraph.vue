@@ -59,6 +59,9 @@
               <p v-if="course.metrics?.dfwRate !== undefined">
               <strong>DFW Rate:</strong> {{ (course.metrics.dfwRate * 100).toFixed(1) }}%
             </p>
+            <p><strong>Waiting List:</strong> {{ course["waiting list"] }}</p>
+            <p><strong>Equity Gap:</strong> {{ course["equity gap"] ? 'Yes' : 'No' }}</p>
+
             </div>
           </div>
         </div>
