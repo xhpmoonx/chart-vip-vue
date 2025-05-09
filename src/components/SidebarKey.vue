@@ -81,6 +81,20 @@
         <option value="normal">Only Normal</option>
       </select>
     </div>
+<!-- DFW Highlight Mode -->
+<div class="dropdown-group">
+  <label for="dfw-highlight" class="label">Highlight High DFW Courses:</label>
+  <select
+    id="dfw-highlight"
+    :value="highlightDFW ? 'on' : 'off'"
+    @change="e => emit('update:highlightDFW', e.target.value === 'on')"
+  >
+    <option value="off">Off</option>
+    <option value="on">On</option>
+  </select>
+</div>
+
+
 
 
   </div>
@@ -90,10 +104,12 @@
 <script setup>
 const props = defineProps({
   mode: String,
-  lineMode: String
+  lineMode: String,
+  highlightDFW: Boolean 
+
 });
 
-const emit = defineEmits(['update:mode', 'update:lineMode']);
+const emit = defineEmits(['update:mode', 'update:lineMode', 'update:highlightDFW']);
 </script>
 
 <style scoped>
@@ -146,6 +162,14 @@ select {
   background-color: #e5e7eb;
   border: 1.5px solid transparent;
 }
+.checkbox-group {
+  margin-top: 0.75rem;
+  font-size: 0.72rem;
+}
+.checkbox-group input {
+  margin-right: 0.4rem;
+}
+
 
 /* Colors by type */
 .core { background-color: #3b82f6; }

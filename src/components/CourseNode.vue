@@ -9,7 +9,7 @@
     <div
       class="shape"
       :id="course.id"
-      :class="[shapeClass,colorLevel > 0 ? `color-level-${colorLevel}` : '',{ dimmed }]">
+      :class="[shapeClass, colorLevel > 0 ? `color-level-${colorLevel}` : '', { dimmed, 'dfw-outline': isHighDFW }]">
 
       <span class="units">
         <template v-if="mode === 'units'">
@@ -36,6 +36,10 @@ const props = defineProps({
   highlightedId: String,
   colorLevel: Number,
   dimmed: Boolean, 
+  highlightDfw: Boolean
+});
+const isHighDFW = computed(() => {
+  return props.highlightDfw && props.course.metrics?.dfwRate >= 0.3;
 });
 
 const formattedLabel = computed(() => {
@@ -146,6 +150,10 @@ const stateClass = computed(() =>
 .dimmed {
   filter: grayscale(90%) brightness(0.8);
   opacity: 0.4;
+}
+.dfw-outline {
+  border-color: #dc2626 !important; /* red */
+  box-shadow: 0 0 4px #dc2626aa;
 }
 
 .units {

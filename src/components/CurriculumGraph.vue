@@ -42,6 +42,7 @@
           :highlighted-id="hoveredCourseId"
           :color-level="hoverColors[course.id] || 0"
           :dimmed="hoveredCourseId && course.id !== hoveredCourseId && !hoverColors[course.id]"
+          :highlight-dfw="highlightDFW" 
           @hover="onHover"
           @leave="clearHover"
         />
@@ -74,6 +75,8 @@
   :line-mode="lineMode"
   @update:mode="mode = $event"
   @update:lineMode="lineMode = $event"
+  @update:highlightDFW="highlightDFW = $event"
+
 />
 
   </div>
@@ -94,6 +97,7 @@ const hoveredCourseId = ref(null);
 const hoverColors = ref({});
 const mode = ref('units');
 const lineMode = ref('all');
+const highlightDFW = ref(false);
 
 const longestPath = computed(() => {
   return findLongestPaths(curriculum.value);
