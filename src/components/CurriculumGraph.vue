@@ -1,7 +1,11 @@
 <template>
   <div class="layout">
     <div class="graph-wrapper" @click="selectedCourse = null">
-      <div class="grid" id="curriculum">
+      <div
+        class="grid"
+        id="curriculum"
+        :style="{ gridTemplateColumns: `repeat(${termNumbers.length}, 1fr)` }"
+      >
         <ArrowLines
           :arrows="filteredArrows"
           :highlighted="highlightedArrows"

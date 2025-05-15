@@ -469,8 +469,8 @@
     "label": "MATH 230\nDiscrete Math",
     "units": 4,
     "type": "core",
-    "term": 7,
-    "row": 5,
+    "term": 5,
+    "row": 6,
     "prereqs": [
       "math101"
     ],
@@ -544,6 +544,283 @@
     },
     "frequency": "Offered twice a year",
     "waiting list": 0,
+    "equity gap": false
+  },
+  {
+    "id": "placeholder_9_1",
+    "label": "Placeholder 9-1\nNew Course",
+    "units": 3,
+    "type": "elective",
+    "term": 9,
+    "row": 3,
+    "prereqs": [],
+    "metrics": {
+      "complexity": 1,
+      "delay": 0,
+      "blocking": 0,
+      "centrality": 0.0,
+      "dfwRate": 0.0
+    },
+    "frequency": "TBD",
+    "waiting list": 0,
+    "equity gap": false
+  },
+  {
+    "id": "placeholder_9_2",
+    "label": "Placeholder 9-2\nNew Course",
+    "units": 3,
+    "type": "elective",
+    "term": 9,
+    "row": 4,
+    "prereqs": [],
+    "metrics": {
+      "complexity": 1,
+      "delay": 0,
+      "blocking": 0,
+      "centrality": 0.0,
+      "dfwRate": 0.0
+    },
+    "frequency": "TBD",
+    "waiting list": 0,
+    "equity gap": false
+  },
+  {
+    "id": "placeholder_10_1",
+    "label": "Placeholder 10-1\nNew Course",
+    "units": 3,
+    "type": "elective",
+    "term": 10,
+    "row": 4,
+    "prereqs": [],
+    "metrics": {
+      "complexity": 1,
+      "delay": 0,
+      "blocking": 0,
+      "centrality": 0.0,
+      "dfwRate": 0.0
+    },
+    "frequency": "TBD",
+    "waiting list": 0,
+    "equity gap": false
+  },
+  {
+    "id": "placeholder_10_2",
+    "label": "Placeholder 10-2\nNew Course",
+    "units": 3,
+    "type": "elective",
+    "term": 10,
+    "row": 5,
+    "prereqs": [],
+    "metrics": {
+      "complexity": 1,
+      "delay": 0,
+      "blocking": 0,
+      "centrality": 0.0,
+      "dfwRate": 0.0
+    },
+    "frequency": "TBD",
+    "waiting list": 0,
+    "equity gap": false
+  },
+  {
+    "id": "placeholder_11_1",
+    "label": "Placeholder 11-1\nNew Course",
+    "units": 3,
+    "type": "elective",
+    "term": 11,
+    "row": 4,
+    "prereqs": [],
+    "metrics": {
+      "complexity": 1,
+      "delay": 0,
+      "blocking": 0,
+      "centrality": 0.0,
+      "dfwRate": 0.0
+    },
+    "frequency": "TBD",
+    "waiting list": 0,
+    "equity gap": false
+  },
+  {
+    "id": "placeholder_11_2",
+    "label": "Placeholder 11-2\nNew Course",
+    "units": 3,
+    "type": "elective",
+    "term": 11,
+    "row": 5,
+    "prereqs": [],
+    "metrics": {
+      "complexity": 1,
+      "delay": 0,
+      "blocking": 0,
+      "centrality": 0.0,
+      "dfwRate": 0.0
+    },
+    "frequency": "TBD",
+    "waiting list": 0,
+    "equity gap": false
+  },
+  {
+    "id": "placeholder_12_1",
+    "label": "Placeholder 12-1\nNew Course",
+    "units": 3,
+    "type": "elective",
+    "term": 12,
+    "row": 3,
+    "prereqs": [],
+    "metrics": {
+      "complexity": 1,
+      "delay": 0,
+      "blocking": 0,
+      "centrality": 0.0,
+      "dfwRate": 0.0
+    },
+    "frequency": "TBD",
+    "waiting list": 0,
+    "equity gap": false
+  },
+  {
+    "id": "placeholder_12_2",
+    "label": "Placeholder 12-2\nNew Course",
+    "units": 3,
+    "type": "elective",
+    "term": 12,
+    "row": 4,
+    "prereqs": [],
+    "metrics": {
+      "complexity": 1,
+      "delay": 0,
+      "blocking": 0,
+      "centrality": 0.0,
+      "dfwRate": 0.0
+    },
+    "frequency": "TBD",
+    "waiting list": 0,
+    "equity gap": false
+  },
+  {
+    "id": "bus401",
+    "label": "BUS 401\nEntrepreneurship",
+    "units": 3,
+    "type": "elective",
+    "term": 9,
+    "row": 2,
+    "prereqs": [
+      "capstone"
+    ],
+    "metrics": {
+      "complexity": 5,
+      "delay": 0,
+      "blocking": 1,
+      "centrality": 0.22,
+      "dfwRate": 0.12
+    },
+    "frequency": "Offered once a year",
+    "waiting list": 5,
+    "equity gap": false
+  },
+  {
+    "id": "cs310",
+    "label": "CS 310\nMachine Learning",
+    "units": 4,
+    "type": "core",
+    "term": 10,
+    "row": 2,
+    "prereqs": [
+      "cs221",
+      "stat202"
+    ],
+    "metrics": {
+      "complexity": 9,
+      "delay": 2,
+      "blocking": 2,
+      "centrality": 0.45,
+      "dfwRate": 0.25
+    },
+    "frequency": "Offered once a year",
+    "waiting list": 12,
+    "equity gap": false
+  },
+  {
+    "id": "cs312",
+    "label": "CS 312\nNatural Language Processing",
+    "units": 4,
+    "type": "elective",
+    "term": 10,
+    "row": 3,
+    "prereqs": [
+      "cs310"
+    ],
+    "metrics": {
+      "complexity": 8,
+      "delay": 3,
+      "blocking": 1,
+      "centrality": 0.37,
+      "dfwRate": 0.2
+    },
+    "frequency": "Offered once a year",
+    "waiting list": 8,
+    "equity gap": false
+  },
+  {
+    "id": "math305",
+    "label": "MATH 305\nNumerical Methods",
+    "units": 4,
+    "type": "core",
+    "term": 11,
+    "row": 2,
+    "prereqs": [
+      "math202"
+    ],
+    "metrics": {
+      "complexity": 6,
+      "delay": 2,
+      "blocking": 2,
+      "centrality": 0.3,
+      "dfwRate": 0.18
+    },
+    "frequency": "Offered year-round",
+    "waiting list": 4,
+    "equity gap": false
+  },
+  {
+    "id": "ge7",
+    "label": "GE 7\nCivic Engagement",
+    "units": 3,
+    "type": "ge",
+    "term": 11,
+    "row": 3,
+    "prereqs": [],
+    "metrics": {
+      "complexity": 2,
+      "delay": 1,
+      "blocking": 0,
+      "centrality": 0.1,
+      "dfwRate": 0.1
+    },
+    "frequency": "Offered twice a year",
+    "waiting list": 2,
+    "equity gap": false
+  },
+  {
+    "id": "cs499",
+    "label": "CS 499\nSpecial Topics in CS",
+    "units": 3,
+    "type": "elective",
+    "term": 12,
+    "row": 2,
+    "prereqs": [
+      "cs312"
+    ],
+    "metrics": {
+      "complexity": 7,
+      "delay": 1,
+      "blocking": 0,
+      "centrality": 0.2,
+      "dfwRate": 0.15
+    },
+    "frequency": "Offered once a year",
+    "waiting list": 6,
     "equity gap": false
   }
 ]
