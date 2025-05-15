@@ -65,6 +65,8 @@
       <li><span class="swatch color-level-2"></span> Indirect Prerequisite</li>
       <li><span class="swatch color-level-11"></span> Direct Dependent</li>
       <li><span class="swatch color-level-12"></span> Indirect Dependent</li>
+      <li><span class="swatch color-level-0"></span> Corequisite</li>
+
     </ul>
     <div class="divider" />
 
@@ -241,5 +243,7 @@ select {
 .color-level-2 { background-color: #f87171; }   /* lighter red */
 .color-level-11 { background-color: #1e40af; }  /* dark blue */
 .color-level-12 { background-color: #3b82f6; }  /* light blue */
+.color-level-0 { background-color: #62bf85 } /*  green */
+
 
 </style>
