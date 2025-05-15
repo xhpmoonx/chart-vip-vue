@@ -469,8 +469,8 @@
     "label": "MATH 230\nDiscrete Math",
     "units": 4,
     "type": "core",
-    "term": 7,
-    "row": 5,
+    "term": 5,
+    "row": 6,
     "prereqs": [
       "math101"
     ],
