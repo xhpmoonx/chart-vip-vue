@@ -44,6 +44,7 @@
           :course="course"
           :mode="mode"
           :highlighted-id="hoveredCourseId"
+          :hovered-course="curriculum.find(c => c.id === hoveredCourseId)"
           :color-level="hoverColors[course.id] || 0"
           :dimmed="hoveredCourseId && course.id !== hoveredCourseId && !hoverColors[course.id]"
           :highlight-dfw="highlightDFW" 

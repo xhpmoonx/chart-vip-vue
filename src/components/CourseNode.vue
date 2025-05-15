@@ -9,7 +9,12 @@
     <div
       class="shape"
       :id="course.id"
-      :class="[shapeClass, colorLevel > 0 ? `color-level-${colorLevel}` : '', { dimmed, 'dfw-outline': isHighDFW }]">
+      :class="[
+  shapeClass,
+  isCorequisite ? 'coreq-highlight' : (colorLevel > 0 ? `color-level-${colorLevel}` : ''),
+  { dimmed, 'dfw-outline': isHighDFW }
+]"
+>
 
       <span class="units">
         <template v-if="mode === 'units'">
@@ -36,7 +41,9 @@ const props = defineProps({
   highlightedId: String,
   colorLevel: Number,
   dimmed: Boolean, 
-  highlightDfw: Boolean
+  highlightDfw: Boolean,
+  hoveredCourse: Object
+
 });
 const isHighDFW = computed(() => {
   return props.highlightDfw && props.course.metrics?.dfwRate >= 0.3;
@@ -81,6 +88,11 @@ const metricClass = computed(() => {
 const stateClass = computed(() =>
   props.highlightedId === props.course.id ? 'active' : ''
 );
+const isCorequisite = computed(() => {
+  if (!props.hoveredCourse || !props.hoveredCourse.coreqs) return false;
+  return props.hoveredCourse.coreqs.includes(props.course.id);
+});
+
 </script>
 
 <style scoped>
@@ -135,6 +147,15 @@ const stateClass = computed(() =>
   outline: 2px solid #2563eb;
   outline-offset: 1px;
   color: black;
+}
+.coreq-outline {
+  outline: 3px solid #174d2b !important; /* green */
+  outline-offset: 1px;
+}
+.coreq-highlight.shape {
+  background-color: #62bf85 !important; /* Tailwind's green-500 */
+  border-color: #16a34a !important; /* green-600 border */
+  color: white;
 }
 
 /* Prereqs (red shades) */

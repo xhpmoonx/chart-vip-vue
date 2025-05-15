@@ -469,8 +469,8 @@
     "label": "MATH 230\nDiscrete Math",
     "units": 4,
     "type": "core",
-    "term": 5,
-    "row": 6,
+    "term": 7,
+    "row": 5,
     "prereqs": [
       "math101"
     ],
@@ -739,7 +739,10 @@
     },
     "frequency": "Offered once a year",
     "waiting list": 12,
-    "equity gap": false
+    "equity gap": false,
+    "coreqs": [
+      "cs312"
+    ]
   },
   {
     "id": "cs312",
@@ -760,7 +763,10 @@
     },
     "frequency": "Offered once a year",
     "waiting list": 8,
-    "equity gap": false
+    "equity gap": false,
+    "coreqs": [
+      "cs310"
+    ]
   },
   {
     "id": "math305",
