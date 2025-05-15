@@ -120,6 +120,9 @@
     <option value="on">Red for High DFW</option>
   </select>
 </div>
+<div class="divider" />
+<div class="divider" />
+<div class="divider" />
 
   </div>
       </div>
@@ -140,7 +143,6 @@ const emit = defineEmits(['update:mode', 'update:lineMode', 'update:highlightDFW
 <style scoped>
 .sidebar-scroll {
   overflow-y: auto;
-  height: 100%;
   padding: 1rem 1.5rem 1rem 1rem;
 }
 .legend {
