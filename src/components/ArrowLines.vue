@@ -18,7 +18,7 @@
       v-for="(arrow, index) in positions"
       :key="index"
       :d="getPath(arrow)"
-      :stroke="arrow.isLongest ? 'green' : getStroke(arrow)"
+      :stroke="arrow.isLongest ? 'green' : (arrow.color || getStroke(arrow))"
       :stroke-dasharray="arrow.isLongest ? '6,4' : (arrow.dfwLike ? '4,2' : 'none')"
       stroke-width="2"
       fill="none"
@@ -62,7 +62,13 @@ function calculatePositions() {
   const x2 = toRect.left + toRect.width / 2 - containerRect.left;
   const y2 = toRect.top + toRect.height / 2 - containerRect.top;
 
-  result.push({ x1, y1, x2, y2, from, to, dfwLike }); // ✅ preserve dfwLike here
+  result.push({
+    x1, y1, x2, y2,
+    from, to,
+    dfwLike: arrow.dfwLike,
+    color: arrow.color,  
+    isLongest: arrow.isLongest
+  });
 });
 
   props.highlighted.forEach(({ from, to }) => {

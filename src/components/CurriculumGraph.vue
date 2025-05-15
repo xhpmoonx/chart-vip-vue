@@ -82,7 +82,9 @@
   @update:lineMode="lineMode = $event"
   @update:highlightDFW="highlightDFW = $event"
   :dashedDFW="dashedDFW"
+  :colorDashedDFW="colorDashedDFW"
   @update:dashedDFW="dashedDFW = $event"
+  @update:colorDashedDFW="colorDashedDFW = $event"
 />
 
   </div>
@@ -106,6 +108,7 @@ const lineMode = ref('all');
 const highlightDFW = ref(false);
 let longestPath = ref([]); 
 const dashedDFW = ref(false);
+const colorDashedDFW = ref(false);
 
 const highlightedArrows = computed(() => {
   return longestPath.value.slice(0, -1).map((fromId, i) => ({
@@ -137,15 +140,21 @@ function computeArrows() {
       const fromCourse = curriculum.value.find(c => c.id === fromId);
       const dfwRate = fromCourse?.metrics?.dfwRate ?? 0;
 
+      const isHighDFW = dfwRate >= 0.3;
+
       return {
         from: fromId,
         to: course.id,
-        dfwRate: dfwRate,
-        dfwLike: dashedDFW.value && dfwRate >= 0.3
+        dfwRate,
+        dfwLike: dfwRate >= 0.3 && dashedDFW.value,
+        isHighDFW: dfwRate >= 0.3,
+        color: colorDashedDFW.value && dfwRate >= 0.3 ? '#dc2626' : null, 
       };
+
     });
   });
 }
+
 
 const filteredArrows = computed(() => {
   if (lineMode.value === 'high') {
@@ -228,6 +237,7 @@ onMounted(() => {
 
 watch(curriculum, computeArrows, { deep: true, immediate: true });
 watch(dashedDFW, computeArrows);
+watch(colorDashedDFW, computeArrows);
 
 </script>
 
