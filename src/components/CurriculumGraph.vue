@@ -81,7 +81,8 @@
   @update:mode="mode = $event"
   @update:lineMode="lineMode = $event"
   @update:highlightDFW="highlightDFW = $event"
-
+  :dashedDFW="dashedDFW"
+  @update:dashedDFW="dashedDFW = $event"
 />
 
   </div>
@@ -104,6 +105,7 @@ const mode = ref('units');
 const lineMode = ref('all');
 const highlightDFW = ref(false);
 let longestPath = ref([]); 
+const dashedDFW = ref(false);
 
 const highlightedArrows = computed(() => {
   return longestPath.value.slice(0, -1).map((fromId, i) => ({
@@ -138,7 +140,8 @@ function computeArrows() {
       return {
         from: fromId,
         to: course.id,
-        dfwRate: dfwRate
+        dfwRate: dfwRate,
+        dfwLike: dashedDFW.value && dfwRate >= 0.3
       };
     });
   });
@@ -224,6 +227,8 @@ onMounted(() => {
 });
 
 watch(curriculum, computeArrows, { deep: true, immediate: true });
+watch(dashedDFW, computeArrows);
+
 </script>
 
 <style scoped>

@@ -47,23 +47,24 @@ function calculatePositions() {
   const container = document.querySelector('.graph-wrapper');
   if (!container) return;
 
-  props.arrows.forEach(({ from, to, dfwLike }) => {
-    const fromEl = document.getElementById(from);
-    const toEl = document.getElementById(to);
-    if (!fromEl || !toEl) return;
+  props.arrows.forEach(arrow => {
+  const { from, to, dfwLike } = arrow;
+  const fromEl = document.getElementById(from);
+  const toEl = document.getElementById(to);
+  if (!fromEl || !toEl) return;
 
-    const containerRect = container.getBoundingClientRect();
-    const fromRect = fromEl.getBoundingClientRect();
-    const toRect = toEl.getBoundingClientRect();
+  const containerRect = container.getBoundingClientRect();
+  const fromRect = fromEl.getBoundingClientRect();
+  const toRect = toEl.getBoundingClientRect();
 
-    const x1 = fromRect.left + fromRect.width / 2 - containerRect.left;
-    const y1 = fromRect.top + fromRect.height / 2 - containerRect.top;
+  const x1 = fromRect.left + fromRect.width / 2 - containerRect.left;
+  const y1 = fromRect.top + fromRect.height / 2 - containerRect.top;
+  const x2 = toRect.left + toRect.width / 2 - containerRect.left;
+  const y2 = toRect.top + toRect.height / 2 - containerRect.top;
 
-    const x2 = toRect.left + toRect.width / 2 - containerRect.left;
-    const y2 = toRect.top + toRect.height / 2 - containerRect.top;
+  result.push({ x1, y1, x2, y2, from, to, dfwLike }); // ✅ preserve dfwLike here
+});
 
-    result.push({ x1, y1, x2, y2, from, to, dfwLike });
-  });
   props.highlighted.forEach(({ from, to }) => {
   const fromEl = document.getElementById(from);
   const toEl = document.getElementById(to);

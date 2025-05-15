@@ -95,6 +95,18 @@
     <option value="on">On</option>
   </select>
 </div>
+<!-- DFW dashed Mode -->
+<div class="dropdown-group">
+  <label for="dfw-dashed" class="label">Dashed Lines for High DFW:</label>
+  <select
+    id="dfw-dashed"
+    :value="dashedDFW ? 'on' : 'off'"
+    @change="e => emit('update:dashedDFW', e.target.value === 'on')"
+  >
+    <option value="off">Off</option>
+    <option value="on">On</option>
+  </select>
+</div>
 
 
 
@@ -107,11 +119,11 @@
 const props = defineProps({
   mode: String,
   lineMode: String,
-  highlightDFW: Boolean 
-
+  highlightDFW: Boolean,
+  dashedDFW: Boolean,
 });
 
-const emit = defineEmits(['update:mode', 'update:lineMode', 'update:highlightDFW']);
+const emit = defineEmits(['update:mode', 'update:lineMode', 'update:highlightDFW', 'update:dashedDFW' ]);
 </script>
 
 <style scoped>
