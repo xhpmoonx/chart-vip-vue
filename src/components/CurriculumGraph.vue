@@ -93,7 +93,7 @@ import CourseNode from './CourseNode.vue';
 import ArrowLines from './ArrowLines.vue';
 import SidebarKey from './SidebarKey.vue';
 import curriculumData from '../assets/curriculum.json';
-import { findLongestPaths } from '../utils/graph.js';
+import { findLongestPathTo } from '../utils/graph.js';
 
 const curriculum = ref([]);
 const arrowPositions = ref([]);
@@ -103,10 +103,8 @@ const hoverColors = ref({});
 const mode = ref('units');
 const lineMode = ref('all');
 const highlightDFW = ref(false);
+let longestPath = ref([]); 
 
-const longestPath = computed(() => {
-  return findLongestPaths(curriculum.value);
-});
 const highlightedArrows = computed(() => {
   return longestPath.value.slice(0, -1).map((fromId, i) => ({
     from: fromId,
@@ -207,9 +205,15 @@ function clearHover() {
 }
 
 function selectCourse(course) {
-  selectedCourse.value =
-    selectedCourse.value?.id === course.id ? null : course;
+  selectedCourse.value = course;
+  longestPath.value = findLongestPathTo(curriculum.value, course.id);
+  
+  console.log("Selected course:", course.id);
+  console.log("Longest path:", longestPath.value);
+  console.log("Highlighted arrows:", highlightedArrows.value); // Will still be Proxy
 }
+
+
 
 onMounted(() => {
   curriculum.value = curriculumData;   

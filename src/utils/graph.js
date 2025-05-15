@@ -16,7 +16,7 @@ export function buildGraph(courses) {
   
     return { graph, inDegree };
   }
-  
+  /*
   export function findLongestPaths(courses) {
     const { graph, inDegree } = buildGraph(courses);
     const distances = new Map();
@@ -61,5 +61,45 @@ export function buildGraph(courses) {
     }
   
     return path;
+  } */
+
+  export function findLongestPathTo(courses, targetId) {
+    const { graph, inDegree } = buildGraph(courses);
+    const distances = new Map();
+    const prev = new Map();
+  
+    for (const course of courses) {
+      distances.set(course.id, 0);
+    }
+  
+    const queue = [];
+    for (const [node, degree] of inDegree.entries()) {
+      if (degree === 0) queue.push(node); // source nodes
+    }
+  
+    while (queue.length > 0) {
+      const u = queue.shift();
+      for (const v of graph.get(u)) {
+        if (distances.get(v) < distances.get(u) + 1) {
+          distances.set(v, distances.get(u) + 1);
+          prev.set(v, u);
+        }
+        inDegree.set(v, inDegree.get(v) - 1);
+        if (inDegree.get(v) === 0) {
+          queue.push(v);
+        }
+      }
+    }
+  
+    // Reconstruct path to targetId
+    const path = [];
+    let current = targetId;
+    while (current != null) {
+      path.unshift(current);
+      current = prev.get(current);
+    }
+  
+    return path;
   }
+  
     
