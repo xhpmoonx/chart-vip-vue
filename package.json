@@ -3,13 +3,17 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://xhpmoonx.github.io/chart-vip-vue/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.3",
+    "gh-pages": "^6.3.0",
     "vite": "^6.3.1"
   },
   "dependencies": {
