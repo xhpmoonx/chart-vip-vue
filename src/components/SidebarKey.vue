@@ -26,10 +26,10 @@
 
     <!-- Type Legend -->
     <h4 class="title">Color = Type</h4>
-    <div class="item"><span class="shape core" /> Core</div>
+    <div class="item"><span class="shape major-requirements" /> Major requirements</div>
     <div class="item"><span class="shape ge" /> GE</div>
     <div class="item"><span class="shape elective" /> Elective</div>
-    <div class="item"><span class="shape capstone" /> Capstone</div>
+    <div class="item"><span class="shape project" /> Project</div>
     <div class="divider" />
 
     <!-- Shape Legend -->
@@ -199,10 +199,10 @@ select {
 
 
 /* Colors by type */
-.core { background-color: #3b82f6; }
+.major-requirements { background-color: #3b82f6; }
 .ge { background-color: #10b981; }
 .elective { background-color: #f59e0b; }
-.capstone { background-color: #8b5cf6; }
+.project { background-color: #8b5cf6; }
 
 /* Shapes by frequency */
 .circle {

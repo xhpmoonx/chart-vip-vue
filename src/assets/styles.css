@@ -82,7 +82,7 @@ body {
   }
   
   /* Apply shapes based on data-type wrapper */
-  [data-type="core"] .shape.example {
+  [data-type="major-equirements"] .shape.example {
     border-radius: 50%;
   }
   
@@ -96,7 +96,7 @@ body {
     height: 28px;
   }
   
-  [data-type="capstone"] .shape.example {
+  [data-type="project"] .shape.example {
     border: 3px solid #1b2d52;
     clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
     width: 40px;
@@ -106,7 +106,7 @@ body {
   
   
 /* === Shape Styles by Course Type === */
-.course[data-type="core"] .shape {
+.course[data-type="major-equirements"] .shape {
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -124,7 +124,7 @@ body {
   border-radius: 999px;
 }
 
-.course[data-type="capstone"] .shape {
+.course[data-type="project"] .shape {
     width: 45px;
     height: 45px;
     background: rgb(154, 164, 188);

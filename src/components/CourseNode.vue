@@ -134,10 +134,10 @@ const isCorequisite = computed(() => {
   border: 4px solid #d1d5db;
 }
 
-.core .shape { background-color: #3b82f6; }
+.major-requirements .shape { background-color: #3b82f6; }
 .ge .shape { background-color: #10b981; }
 .elective .shape { background-color: #f59e0b; }
-.capstone .shape { background-color: #8b5cf6; }
+.project .shape { background-color: #8b5cf6; }
 
 .high-blocking .shape { border-color: #dc2626;   color: black;}
 .high-delay .shape { border-color: #f59e0b;   color: black;}
