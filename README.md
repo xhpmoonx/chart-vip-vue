@@ -7,6 +7,10 @@ A Vue.js-based charting application built with Vite.
 - Interactive and customizable charts
 - Built with Vue 3 and Vite for optimal performance
 - Modular and maintainable code structure
+## 🌐 Live Demo
+
+Check out the live version of the app here:  
+🔗 [Chart VIP Vue Live Demo](https://xhpmoonx.github.io/chart-vip-vue/)
 
 ## 📦 Installation
 
